@@ -11,6 +11,7 @@ $(".qinfo").hide();
 // Allow questions to be opened or closed
 $(".qtext").unbind('click');
 $(".qtext").click(function(e) { 
+
   
   /* debug info */
   var hasOpenQ = $(this).hasClass("openQ");
@@ -18,9 +19,7 @@ $(".qtext").click(function(e) {
   
   console.log("clicked, yo. isOpen"+hasOpenQ+
               " isInit"+hasInitQ);
-  
-  
-  
+    
   /*
     Toggle line height
     Note:
@@ -127,7 +126,6 @@ window.ecometrix.questions =  {
    "btns": ["yes", "no"],
    "motivation": "m3"
   }]
-
   }; 
 
 window.ecometrix.resources = {
@@ -154,118 +152,119 @@ function ecoRender() {
 }
 
 function ecoBlock(argFrame) {
-  /* 
-   *  Questions have the following layout:
-   *
-   *  div class=question qEssence
-   *      div class= qtext initQ
-   *      div class= qinfo initQ
-   *      div class= buttons buttony
-   *           button class=btn yesB
-   *           button class=btn noB   
-   *      div class= motivation
-   *
-   * div class=ttrContent ttrEssence
-   *      div class= ttext
-   */
-  
-  // var construct ecoblock
-  var newBlock = jQuery('<div class="parent row">');  
-  
-  /* decide which class it is and set question or twitter or whatever */
+    /* 
+     *  Questions have the following layout:
+     *
+     *  div class=question qEssence
+     *      div class= qtext initQ
+     *      div class= qinfo initQ
+     *      div class= buttons buttony
+     *           button class=btn yesB
+     *           button class=btn noB   
+     *      div class= motivation
+     *
+     * div class=ttrContent ttrEssence
+     *      div class= ttext
+     */
+    
+    // var construct ecoblock
+    var newBlock = jQuery('<div class="parent row">');  
+    
+    /* decide which class it is and set question or twitter or whatever */
 
-  if (argFrame.type == "question") {
-      newBlock.addClass('question qEssence');
-  }
-  
-  if (argFrame.type =="twitter") {
-      newBlock.addClass('ttrEssence ttrContent');
-  }
- 
-console.log( "argFrame: " + argFrame.type );
-  
-  // frame content: qtext and ttext
-  if (typeof argFrame.content != "undefined") {
-   
-     var content =
-    $('<div>').text(argFrame.content);
-        
-    if (argFrame.type =="question") {
-      content.addClass('qtext initQ');  
+    if (argFrame.type == "question") {
+        newBlock.addClass('question qEssence');
     }
     
     if (argFrame.type =="twitter") {
-      content.addClass('ttext');
+        newBlock.addClass('ttrEssence ttrContent');
     }
     
-    content.appendTo(newBlock);
-  }
-  
-  
-  // frame info
-  if (typeof argFrame.info != "undefined") {
-     var info =
-    $('<div>').text(argFrame.info);
-    info.addClass('qinfo initQ');
-    info.appendTo(newBlock);
-  }
-  
-  
-  // frame buttonBox
-  if (argFrame.btns != "undefined") {
-    var bbox = $('<div>');         
-    for (var i = 0; i < argFrame.btns.length; i++) {
-      var btn = $('<button>');
-
-      
-
-      if (argFrame.btns[i] == 'yes') 
-      {
-        btn =   $(window.ecometrix.resources.btn.btnYes);
-        bbox.addClass('buttons buttony');
-      }
+    console.log( "argFrame: " + argFrame.type );
     
-      if (argFrame.btns[i] == 'no') 
-      {
-        btn =       $(window.ecometrix.resources.btn.btnNo);
-        bbox.addClass('buttons buttonn');
-      }
-        bbox.append(btn);
-    
+    // frame content: qtext and ttext
+    if (typeof argFrame.content != "undefined") {
         
+        var content =
+            $('<div>').text(argFrame.content);
+        
+        if (argFrame.type =="question") {
+            content.addClass('qtext initQ');  
+        }
+        
+        if (argFrame.type =="twitter") {
+            content.addClass('ttext');
+        }
+        
+        content.appendTo(newBlock);
     }
-    bbox.appendTo(newBlock);
-  }
- 
+    
+    
+    // frame info
+    if (typeof argFrame.info != "undefined") {
+        var info =
+            $('<div>').text(argFrame.info);
+        info.addClass('qinfo initQ');
+        info.appendTo(newBlock);
+    }
+    
+    
+    // frame buttonBox
+    if (argFrame.btns != "undefined") {
+        var bbox = $('<div>');         
+        for (var i = 0; i < argFrame.btns.length; i++) {
+            var btn = $('<button>');
 
-  // frame info
-  
-  // motivation list...
-/*     if (typeof argFrame.motivations != "undefined") {
-     var motivation =
-    $('<div>').text(argFrame.motivation);
-      for (var i = 0; i < argFrame.motivations.length; i++) {
+            
+
+            if (argFrame.btns[i] == 'yes') 
+            {
+                btn =   $(window.ecometrix.resources.btn.btnYes);
+                bbox.addClass('buttons buttony');
+            }
+            
+            if (argFrame.btns[i] == 'no') 
+            {
+                btn =       $(window.ecometrix.resources.btn.btnNo);
+                bbox.addClass('buttons buttonn');
+            }
+            bbox.append(btn);
+            
+            
+        }
+        bbox.appendTo(newBlock);
+    }
+    
+
+    // frame info
+    
+    // motivation list...
+    /*     if (typeof argFrame.motivations != "undefined") {
+           var motivation =
+           $('<div>').text(argFrame.motivation);
+           for (var i = 0; i < argFrame.motivations.length; i++) {
+           motivation.addClass('motivation');
+           motivation.appendTo(newBlock);
+           }
+    */
+    
+    
+    if (typeof argFrame.motivation != "undefined") {
+        var motivation =
+            $('<div>').text(argFrame.motivation);
         motivation.addClass('motivation');
-    motivation.appendTo(newBlock);
-      }
- */
-  
-  
-if (typeof argFrame.motivation != "undefined") {
-     var motivation =
-    $('<div>').text(argFrame.motivation);
-    motivation.addClass('motivation');
-    motivation.appendTo(newBlock);
-  }
-  
-  // add to ecoblocks
-  $("#ecoblocks").append(newBlock);
-  
+        motivation.appendTo(newBlock);
+    }
+    
+    // add to ecoblocks
+    $("#ecoblocks").append(newBlock);
+    
 }
 
 function getMoreEcoBlocks(index) {
   $.ajax({
-    url: "http://ecometrix.co:4000/posts/"+index,
+    // url: "http://ecometrix.co:4000/posts/"+index,
+    url: "http://yourecometrix.co:3002/posts/"+index,
     cache: false
     })
   .done(function( json ) {
@@ -331,15 +330,28 @@ function splashScreen() {
   $(".ad").hide();
   
   $("#splash").fadeOut(2000, function () {
-  $("#questions").fadeIn("slow");
+  $("#questions").fadeIn("slow");// error here?
   });
   
 }
 
 
+// TEST for loading next questions
+// $(".far-rightpill").on("click", function
+var nextQuestions = document.getElementById('#questions');
+
+nextQuestions.addEventListener('click', function() {
+    // alert('Hello world');
+    ecoRender();
+    initiateBehavior();
+    updateGraph();
+    getMoreEcoBlocks(2);
+}, false);
+
 /*
  *  Render data, attach behavior
  */
+
 ecoRender();
 initiateBehavior();
 updateGraph();
@@ -348,8 +360,6 @@ getMoreEcoBlocks(1);
 updateScore('ecoscore', 30, 'ecoScore');
 
 splashScreen();
-
-
 
 
 // custom footer controller

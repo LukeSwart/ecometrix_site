@@ -125,6 +125,10 @@ and (min-device-width : 768px) {
     /* override with icons */
 }
 
+.econav .far-rightpill {
+    /* override with icons */
+}
+
 
 /* enable this when footer is enabled */
 body { padding-bottom: 70px; }
