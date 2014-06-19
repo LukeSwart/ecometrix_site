@@ -39,9 +39,7 @@ function initiateBehavior() {
 
             $(this).parents(".question").find(".qinfo").slideDown();
             $(this).parent(".question").find(".buttons").slideDown();
-
         }
-
     });
 
     // If you click yes or no, then show the motivation
@@ -57,7 +55,6 @@ function initiateBehavior() {
             $(this).parents(".question").find(".motivation").slideDown();
 
             updateGraph();
-
         }
     );
 
@@ -87,30 +84,13 @@ function initiateBehavior() {
 
     // TEST for loading next questions
     // $(".far-rightpill").on("click", function
-    // var nextQuestions = document.getElementById('nextquestions');
-    // var nextQuestions = $("#nextquestions")[0];
-    // jQuery(document).ready(function() {
-        // jQuery('#datetimepicker').datepicker();
-        var nextQuestions = $("#nextquestions");
-        console.log("nextQuestions value is: " + nextQuestions);
-        // nextQuestions.addEventListener('click', function() {
-        //     console.log("nextQuestions was " + "clicked");
-        //     // alert('Hello world');
-        //     ecoRender();
-        //     initiateBehavior();
-        //     updateGraph();
-        //     getMoreEcoBlocks(2);
-        // }, false);
+    var nextQuestions = $("#nextquestions");
+    console.log("nextQuestions value is: " + nextQuestions);
     nextQuestions.click(function(){
         console.log("nextQuestions was clicked");
+        // TODO: increment counter to get next round of questions. Delete previous questions, and notify user if no more questions are left.
         getMoreEcoBlocks(2);
-        // ecoRender();
-        // initiateBehavior();
-        // updateGraph();
     });
-        
-
-    // });
 
 } // end initiate behavior
 
@@ -119,6 +99,7 @@ function initiateBehavior() {
  */
 
 if (!window.ecometrix) {
+    console.log("empty window.ecometrix");
     window.ecometrix = {};
 }
 
@@ -289,8 +270,9 @@ function ecoBlock(argFrame) {
 function getMoreEcoBlocks(index) {
     console.log("getting ecoblocks at index: " + index);
     $.ajax({
-        // url: "http://ecometrix.co:4000/posts/"+index,
-        url: "http://yourecometrix.co:3002/posts/" + index,
+        // TODO: Enable Cross-Origin-Resource-Sharing (CORS)
+        // url: "http://yourecometrix.co:3002/posts/" + index, // on server
+        url: "http://localhost:3002/posts/" + index, // local
         cache: false
     })
         .done(function(json) {
@@ -298,6 +280,7 @@ function getMoreEcoBlocks(index) {
             ecoRender();
             initiateBehavior();
             updateGraph();
+            splashScreen();
         });
     // do nothing if this fails
 }
@@ -358,24 +341,19 @@ function splashScreen() {
     $("#splash").fadeOut(2000, function() {
         $("#questions").fadeIn("slow");
     });
-
 }
-
-
 
 /*
  *  Render data, attach behavior
  */
+updateScore('ecoscore', 30, 'ecoScore');
+console.log("questions to be rendered: " + window.ecometrix.questions);
 
 ecoRender();
 initiateBehavior();
 updateGraph();
 getMoreEcoBlocks(1);
-
-updateScore('ecoscore', 30, 'ecoScore');
-
 splashScreen();
-
 
 // custom footer controller
 $('#footernav a').click(function(e) {
@@ -384,5 +362,4 @@ $('#footernav a').click(function(e) {
     $("#tabcontrolled .tab-pane").hide();
 
     $("" + $(this).attr("href")).show();
-
 });
