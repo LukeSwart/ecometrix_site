@@ -272,7 +272,7 @@ function getMoreEcoBlocks(index) {
     $.ajax({
         // TODO: Enable Cross-Origin-Resource-Sharing (CORS)
         // url: "http://yourecometrix.co:3002/posts/" + index, // on server
-        url: "http://yourecometrix.co/posts/" + index, // on server
+        url: "http://yourecometrix.co/posts/" + index, // on server, port forwarded
         // url: "http://localhost:3002/posts/" + index, // local
         cache: false
     })
