@@ -10,6 +10,7 @@ body{
 .button{
     width:100px;
     background:#1C9632;
+    border:20;
     display:block;
     margin:20 auto;
     margin-top:1%;
@@ -58,7 +59,8 @@ form{
     padding:6% 4%;
 }
 
-input[type="email"],input[type="password"]{
+/* input[type="username"],input[type="password"]{ */
+input[type="text"]{
     width:92%;
     background:#fff;
     margin-bottom:4%;
@@ -69,7 +71,7 @@ input[type="email"],input[type="password"]{
     color:#555;
 }
 
-input[type="submit"]{
+input[type="submit"],input[type="add"]{
     width:100%;
     background:#1C9632;
     border:20;
@@ -84,4 +86,15 @@ input[type="submit"]{
 
 input[type="submit"]:hover{
     background:#2288bb;
+}
+
+#error {
+    color:red;
+    font-size:10px;
+    display:none;
+}
+
+.needsfilled {
+    background:red;
+    color:white;
 }
