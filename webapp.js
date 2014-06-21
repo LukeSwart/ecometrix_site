@@ -272,8 +272,8 @@ function getMoreEcoBlocks(index) {
     $.ajax({
         // TODO: Enable Cross-Origin-Resource-Sharing (CORS)
         // url: "http://yourecometrix.co:3002/posts/" + index, // on server
-        url: "http://yourecometrix.co/posts/" + index, // on server, port forwarded
-        // url: "http://localhost:3002/posts/" + index, // local
+        // url: "http://yourecometrix.co/posts/" + index, // on server, port forwarded
+        url: "http://localhost:3002/posts/" + index, // local
         cache: false
     })
         .done(function(json) {
@@ -338,7 +338,6 @@ function splashScreen() {
     $("#splash").show();
     $("#gift").hide();
     $(".ad").hide();
-
     $("#splash").fadeOut(2000, function() {
         $("#questions").fadeIn("slow");
     });

@@ -11,7 +11,7 @@ body{
     width:100px;
     background:#1C9632;
     display:block;
-    margin:0 auto;
+    margin:20 auto;
     margin-top:1%;
     padding:10px;
     text-align:center;
@@ -72,7 +72,7 @@ input[type="email"],input[type="password"]{
 input[type="submit"]{
     width:100%;
     background:#1C9632;
-    border:0;
+    border:20;
     padding:4%;
     font-family:'Open Sans',sans-serif;
     font-size:100%;
