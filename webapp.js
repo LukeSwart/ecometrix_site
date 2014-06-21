@@ -82,66 +82,18 @@ function initiateBehavior() {
 
     $(".ad").hide();
 
-    // TEST for loading next questions
-    // $(".far-rightpill").on("click", function
-    var nextQuestions = $("#nextquestions");
-    console.log("nextQuestions value is: " + nextQuestions);
-    nextQuestions.click(function(){
-        console.log("nextQuestions was clicked");
-        // TODO: increment counter to get next round of questions. Delete previous questions, and notify user if no more questions are left.
-        getMoreEcoBlocks(2);
-    });
+    // // TEST for loading next questions
+    // // $(".far-rightpill").on("click", function
+    // var nextQuestions = $("#nextquestions");
+    // console.log("nextQuestions value is: " + nextQuestions);
+    // nextQuestions.click(function() {
+    //     console.log("nextQuestions was clicked");
+    //     // TODO: increment counter to get next round of questions. Delete previous questions, and notify user if no more questions are left.
+    //     getMoreEcoBlocks(2);
+    // });
 
 } // end initiate behavior
 
-/*
- * Static content
- */
-
-if (!window.ecometrix) {
-    console.log("empty window.ecometrix");
-    window.ecometrix = {};
-}
-
-
-/*
- * fill in the data on the page
- */
-window.ecometrix.questions = {
-    "data": [{
-        "type": "question",
-        "content": "q1.content",
-        "info": "q2.info",
-        "btns": ["yes", "no"],
-        "motivation": "m1"
-    }, {
-        "type": "question",
-        "content": "q2.content",
-        "info": "q2.info",
-        "btns": ["yes", "no"],
-
-        "motivation": "m2"
-    }, {
-        "type": "twitter",
-        "content": "ttr1.content",
-        "info": "ttr2.info",
-        "btns": ["yes", "no"],
-        "motivation": "ttrm1"
-    }, {
-        "type": "question",
-        "content": "q3.content",
-        "info": "q3.info",
-        "btns": ["yes", "no"],
-        "motivation": "m3"
-    }]
-};
-
-window.ecometrix.resources = {
-    "btn": {
-        "btnYes": "<button  type=\"button\" class=\"btn btn-success yesB the-icons clearfix\"><i class=\"icon-ok\"></i></button>",
-        "btnNo": "<button  type=\"button\" class=\"noB btn btn-danger\"><i class=\"icon-remove\"></i></button>"
-    }
-};
 
 
 /*
@@ -267,24 +219,6 @@ function ecoBlock(argFrame) {
 
 }
 
-function getMoreEcoBlocks(index) {
-    console.log("getting ecoblocks at index: " + index);
-    $.ajax({
-        // TODO: Enable Cross-Origin-Resource-Sharing (CORS)
-        // url: "http://yourecometrix.co:3002/posts/" + index, // on server
-        // url: "http://yourecometrix.co/posts/" + index, // on server, port forwarded
-        url: "http://localhost:3002/posts/" + index, // local
-        cache: false
-    })
-        .done(function(json) {
-            window.ecometrix.questions = json;
-            ecoRender();
-            initiateBehavior();
-            updateGraph();
-            splashScreen();
-        });
-    // do nothing if this fails
-}
 
 function updateScore(argID, newValue, label) {
 
@@ -332,34 +266,146 @@ function updateGraph() {
         'Questions');
 }
 
-function splashScreen() {
+function splashScreen(duration) {
+    duration = duration || 2000;
     $("#score").hide();
     $("#questions").hide();
     $("#splash").show();
     $("#gift").hide();
     $(".ad").hide();
-    $("#splash").fadeOut(2000, function() {
+    $("#splash").fadeOut(duration, function() {
         $("#questions").fadeIn("slow");
     });
 }
 
-/*
- *  Render data, attach behavior
- */
-updateScore('ecoscore', 30, 'ecoScore');
-console.log("questions to be rendered: " + window.ecometrix.questions);
+// function getMoreEcoBlocks(index) {
+//     console.log("getting ecoblocks at index: " + index);
+//     $.ajax({
+//         // TODO: Enable Cross-Origin-Resource-Sharing (CORS)
+//         // url: "http://yourecometrix.co:3002/posts/" + index, // on server
+//         // url: "http://yourecometrix.co/posts/" + index, // on server, port forwarded
+//         // url: "http://localhost:3002/posts/" + index, // local
+//         url: "/posts/" + index, // local
+//         cache: false
+//     })
+//         .done(function(json) {
+//             window.ecometrix.questions = json;
+//             ecoRender();
+//             initiateBehavior();
+//             updateGraph();
+//             splashScreen();
+//         });
+//     // do nothing if this fails
+// }
 
-ecoRender();
-initiateBehavior();
-updateGraph();
-getMoreEcoBlocks(1);
-splashScreen();
+function getMoreEcoBlocks(event) {
+    console.log("getting ecoblocks at event,data,index: ");
+    console.log(event);
+    console.log(event.data);
+    console.log(event.data.index);
 
-// custom footer controller
-$('#footernav a').click(function(e) {
-    e.preventDefault();
+    $.ajax({
+        // TODO: Enable Cross-Origin-Resource-Sharing (CORS)
+        // url: "http://yourecometrix.co:3002/posts/" + index, // on server
+        // url: "http://yourecometrix.co/posts/" + index, // on server, port forwarded
+        // url: "http://localhost:3002/posts/" + index, // local
+        url: "/posts/" + event.data.index, // local
+        cache: false
+    })
+        .done(function(json) {
+            window.ecometrix.questions = json;
+            ecoRender();
+            initiateBehavior();
+            updateGraph();
+            splashScreen(400);
+            event.data.index++;
+        });
+    // do nothing if this fails
+}
 
-    $("#tabcontrolled .tab-pane").hide();
+$(document).ready(function() {
 
-    $("" + $(this).attr("href")).show();
+    /*
+     * Static content
+     */
+    if (!window.ecometrix) {
+        console.log("empty window.ecometrix");
+        window.ecometrix = {};
+    }
+
+    /*
+     * fill in the data on the page
+     */
+    window.ecometrix.questions = {
+        "data": [{
+            "type": "question",
+            "content": "q1.content",
+            "info": "q2.info",
+            "btns": ["yes", "no"],
+            "motivation": "m1"
+        }, {
+            "type": "question",
+            "content": "q2.content",
+            "info": "q2.info",
+            "btns": ["yes", "no"],
+
+            "motivation": "m2"
+        }, {
+            "type": "twitter",
+            "content": "ttr1.content",
+            "info": "ttr2.info",
+            "btns": ["yes", "no"],
+            "motivation": "ttrm1"
+        }, {
+            "type": "question",
+            "content": "q3.content",
+            "info": "q3.info",
+            "btns": ["yes", "no"],
+            "motivation": "m3"
+        }]
+    };
+
+    window.ecometrix.resources = {
+        "btn": {
+            "btnYes": "<button  type=\"button\" class=\"btn btn-success yesB the-icons clearfix\"><i class=\"icon-ok\"></i></button>",
+            "btnNo": "<button  type=\"button\" class=\"noB btn btn-danger\"><i class=\"icon-remove\"></i></button>"
+        }
+    };
+
+    /*
+     *  Render data, attach behavior
+     */
+    updateScore('ecoscore', 30, 'ecoScore');
+    console.log("questions to be rendered: " + window.ecometrix.questions);
+
+    ecoRender();
+    initiateBehavior();
+    updateGraph();
+    // getMoreEcoBlocks(1);
+    splashScreen();
+    var index = 1;
+
+    // TEST for loading next questions
+    // $(".far-rightpill").on("click", function
+    // var nextQuestions = $("#nextquestions");
+    // console.log("nextQuestions value is: " + nextQuestions);
+    // $("#nextquestions").click(function(event) {
+    //     console.log("nextQuestions was clicked");
+    //     console.log("event is: " + event);
+    //     console.log("event data is: " + event.data);
+    //     // TODO: increment counter to get next round of questions. Delete previous questions, and notify user if no more questions are left.
+    //     getMoreEcoBlocks(event.data);
+    //     event.data.index++;
+    // });
+
+    $("#nextquestions").click({index : index}, getMoreEcoBlocks); 
+
+    // custom footer controller
+    $('#footernav a').click(function(e) {
+        e.preventDefault();
+
+        $("#tabcontrolled .tab-pane").hide();
+
+        $("" + $(this).attr("href")).show();
+    });
 });
