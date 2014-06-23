@@ -11,7 +11,7 @@ function getUserLoginInfo() {
         data: []
     };
     userTokens.data.push({
-        username: $('#username').val(),
+        username: $('#username').val().trim(),
         password: $('#password').val()
     });
 
@@ -49,12 +49,12 @@ function getNewUserInfo() {
 
         // If it is, compile all user info into one object
         var newUserInfo = {
-            'username': $('#username').val(),
+            'username': $('#username').val().trim(),
             'password': $.md5($('#password').val()),
-            'email': $('#email').val(),
-            'fullName': $('#fullName').val(),
-            'age': $('#age').val(),
-            'location': $('#location').val()
+            'email': $('#email').val().trim(),
+            'fullName': $('#fullName').val().trim(),
+            'age': $('#age').val().trim(),
+            'location': $('#location').val().trim()
         };
     } else {
         // If errorCount is more than 0, error out
@@ -74,11 +74,40 @@ function requestUserInfoViaAJAX(event) {
     console.log("sending userinfo to server: ");
     console.log(userinfo);
 
+    // // jQuery AJAX call for JSON
+    // $.getJSON( '/login/verify', function( data ) {
+
+    // // Stick our user data array into a userlist variable in the global object
+    // // userListData = data;
+
+    //     // For each item in our JSON, add a table row and cells to the content string
+    //     $.each(data, function(){
+    //         if (response.msg == '') {
+    //             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
+    //             alert(message);
+    //             window.location.href='/app.html';
+    //         } else {
+    //             alert("error: " + response.msg);
+    //         }
+            
+    //         // tableContent += '<tr>';
+    //         // tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '" title="Show Details">' + this.username + '</a></td>';
+    //         // tableContent += '<td>' + this.email + '</td>';
+    //         // tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
+    //         // tableContent += '</tr>';
+    //     });
+    // 
+    //     // Inject the whole content string into our existing HTML table
+    //     $('#userList table tbody').html(tableContent);
+    // });
+
+
     $.ajax({
         type: 'GET',
         data: jQuery.param(userinfo),
-        contentType: 'application/json; charset=utf-8',
-        url: '/login/verify'
+        // contentType: 'application/json; charset=utf-8',
+        url: '/login/verify',
+        dataType: 'JSON'
     }).done(function(response) {
         if (response.msg == '') {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
@@ -89,13 +118,6 @@ function requestUserInfoViaAJAX(event) {
         }
         $('.field').val('');
     });
-
-    // // Clears any fields in the form when the user clicks on them
-    // $(":input").focus(function() {
-    //     // $('#password').val('');
-    //     // $('#username').val('');
-    //     $(this).closest('form').find("input[type=text], textarea").val("");
-    // });
 
     return true;
 }
@@ -125,7 +147,7 @@ function insertUserInfoViaAJAX(event) {
         // Check for successful (blank) response
         if (response.msg === '') {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
-            message += "\nWe love having new users! just don't sign up all at once :)";
+            message += "\nWe love having new users! Just be patient while we are beta mode :)";
             alert(message);
             window.location.href='/app.html';
         } else {
