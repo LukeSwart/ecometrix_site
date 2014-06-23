@@ -83,6 +83,7 @@ function requestUserInfoViaAJAX(event) {
         if (response.msg == '') {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             alert(message);
+            window.location.href='/app.html';
         } else {
             alert("error: " + response.msg);
         }
@@ -91,8 +92,8 @@ function requestUserInfoViaAJAX(event) {
 
     // // Clears any fields in the form when the user clicks on them
     // $(":input").focus(function() {
-    //     // $('#username').val('');
     //     // $('#password').val('');
+    //     // $('#username').val('');
     //     $(this).closest('form').find("input[type=text], textarea").val("");
     // });
 
@@ -114,7 +115,6 @@ function insertUserInfoViaAJAX(event) {
         //     data: newUser,
         //     url: '/users/adduser',//
         //     dataType: 'JSON'
-
     // Use AJAX to post the object to our adduser service
     $.ajax({
         type: 'POST',
@@ -127,7 +127,7 @@ function insertUserInfoViaAJAX(event) {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             message += "\nWe love having new users! just don't sign up all at once :)";
             alert(message);
-            // alert('Error: ' + response.msg);
+            window.location.href='/app.html';
         } else {
             // If something goes wrong, alert the error message that our service returned
             alert('Error: ' + response.msg);
