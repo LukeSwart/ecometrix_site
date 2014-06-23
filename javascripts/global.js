@@ -62,10 +62,19 @@ function showUserInfo(event) {
     // Get our User Object
     var thisUserObject = userListData[arrayPosition];
 
+    // Delete all fields just in case a field is not populate in next step
+    // TODO: this is not working...
+    $('#userInfoUsername').val('');
+    $('#userInfoFullName').val('');
+    $('#userInfoAge').val('');
+    $('#userInfoEmail').val('');
+    $('#userInfoLocation').val('');
+
     //Populate Info Box
-    $('#userInfoName').text(thisUserObject.fullname);
+    $('#userInfoUsername').text(thisUserObject.username);
+    $('#userInfoFullName').text(thisUserObject.fullName);
     $('#userInfoAge').text(thisUserObject.age);
-    $('#userInfoGender').text(thisUserObject.gender);
+    $('#userInfoEmail').text(thisUserObject.email);
     $('#userInfoLocation').text(thisUserObject.location);
 
 };
@@ -85,13 +94,15 @@ function addUser(event) {
 
         // If it is, compile all user info into one object
         var newUser = {
-            'username': $('#addUser fieldset input#inputUserName').val(),
-            'email': $('#addUser fieldset input#inputUserEmail').val(),
-            'fullname': $('#addUser fieldset input#inputUserFullname').val(),
+            'username': $('#addUser fieldset input#inputUsername').val(),
+            'fullName': $('#addUser fieldset input#inputUserFullName').val(),
             'age': $('#addUser fieldset input#inputUserAge').val(),
+            'email': $('#addUser fieldset input#inputUserEmail').val(),
             'location': $('#addUser fieldset input#inputUserLocation').val(),
-            'gender': $('#addUser fieldset input#inputUserGender').val()
+            'password':$.md5($('#addUser fieldset input#inputUserPassword').val())
         };
+        console.log("sending newUser to server: ");
+        console.log(newUser);
 
         // Use AJAX to post the object to our adduser service
         $.ajax({

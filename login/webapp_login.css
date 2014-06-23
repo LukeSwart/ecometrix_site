@@ -8,7 +8,8 @@ body{
 }
 
 .button{
-    width:100px;
+    /* width:100px; */
+    width:80px;
     background:#1C9632;
     border:20;
     display:block;
@@ -71,7 +72,7 @@ input[type="text"]{
     color:#555;
 }
 
-input[type="submit"],input[type="add"]{
+input[type="submit"],input[type="switch"]{
     width:100%;
     background:#1C9632;
     border:20;
@@ -84,7 +85,7 @@ input[type="submit"],input[type="add"]{
     -webkit-transition:background .3s;
 }
 
-/* input[type="submit"],input[type="add"]:hover{ */
+/* input[type="submit"],input[type="switch"]:hover{ */
 /*     /\* background:#2288bb; /\\* blue*\\/ *\/ */
 /*     /\* background:#1C9632; /\\* green*\\/ *\/ */
 /* } */
