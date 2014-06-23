@@ -27,7 +27,7 @@ body{
     background:#2288bb;
 }
 
-#login{
+#login, #addUser{
     width:400px;
     margin:0 auto;
     margin-top:8px;
@@ -45,7 +45,7 @@ body{
     margin:0 auto;
 }
 
-#login h1{
+#login h1, #addUser h1{
     background:#1C9632;
     padding:20px 0;
     font-size:140%;
@@ -84,9 +84,10 @@ input[type="submit"],input[type="add"]{
     -webkit-transition:background .3s;
 }
 
-input[type="submit"],input[type="add"]:hover{
-    background:#2288bb;
-}
+/* input[type="submit"],input[type="add"]:hover{ */
+/*     /\* background:#2288bb; /\\* blue*\\/ *\/ */
+/*     /\* background:#1C9632; /\\* green*\\/ *\/ */
+/* } */
 
 #error {
     color:red;
