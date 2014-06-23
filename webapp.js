@@ -278,26 +278,6 @@ function splashScreen(duration) {
     });
 }
 
-// function getMoreEcoBlocks(index) {
-//     console.log("getting ecoblocks at index: " + index);
-//     $.ajax({
-//         // TODO: Enable Cross-Origin-Resource-Sharing (CORS)
-//         // url: "http://yourecometrix.co:3002/posts/" + index, // on server
-//         // url: "http://yourecometrix.co/posts/" + index, // on server, port forwarded
-//         // url: "http://localhost:3002/posts/" + index, // local
-//         url: "/posts/" + index, // local
-//         cache: false
-//     })
-//         .done(function(json) {
-//             window.ecometrix.questions = json;
-//             ecoRender();
-//             initiateBehavior();
-//             updateGraph();
-//             splashScreen();
-//         });
-//     // do nothing if this fails
-// }
-
 function getMoreEcoBlocks(event) {
     console.log("getting ecoblocks at event,data,index: ");
     console.log(event);
@@ -305,11 +285,7 @@ function getMoreEcoBlocks(event) {
     console.log(event.data.index);
 
     $.ajax({
-        // TODO: Enable Cross-Origin-Resource-Sharing (CORS)
-        // url: "http://yourecometrix.co:3002/posts/" + index, // on server
-        // url: "http://yourecometrix.co/posts/" + index, // on server, port forwarded
-        // url: "http://localhost:3002/posts/" + index, // local
-        url: "/posts/" + event.data.index, // local
+        url: "/posts/" + event.data.index,
         cache: false
     })
         .done(function(json) {
@@ -384,19 +360,6 @@ $(document).ready(function() {
     // getMoreEcoBlocks(1);
     splashScreen();
     var index = 1;
-
-    // TEST for loading next questions
-    // $(".far-rightpill").on("click", function
-    // var nextQuestions = $("#nextquestions");
-    // console.log("nextQuestions value is: " + nextQuestions);
-    // $("#nextquestions").click(function(event) {
-    //     console.log("nextQuestions was clicked");
-    //     console.log("event is: " + event);
-    //     console.log("event data is: " + event.data);
-    //     // TODO: increment counter to get next round of questions. Delete previous questions, and notify user if no more questions are left.
-    //     getMoreEcoBlocks(event.data);
-    //     event.data.index++;
-    // });
 
     $("#nextquestions").click({index : index}, getMoreEcoBlocks); 
 
