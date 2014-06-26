@@ -27,10 +27,10 @@ function populateTable() {
     var tableContent = '';
 
     // jQuery AJAX call for JSON
-    $.getJSON( '/users/userlist', function( data ) {
+    $.getJSON('/users/userlist', function( data ) {
 
-    // Stick our user data array into a userlist variable in the global object
-    userListData = data;
+        // Stick our user data array into a userlist variable in the global object
+        userListData = data;
 
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
@@ -135,6 +135,7 @@ function addUser(event) {
         alert('Please fill in all fields');
         return false;
     }
+    return true;
 };
 
 // Delete User
@@ -173,6 +174,6 @@ function deleteUser(event) {
         return false;
 
     }
-
+    return true;
 };
 
