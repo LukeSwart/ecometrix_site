@@ -1,3 +1,5 @@
+// Returns a JSON of the user's information from the EXISTING USER login form.
+// Returns false if any field is left blank.
 function getUserLoginInfo() {
     var errorCount = 0;
     var formIsBlank = true;
@@ -16,8 +18,10 @@ function getUserLoginInfo() {
         // If it is, compile all user info into one object
         var newUserInfo = {
             'username': $('#username').val().trim(),
-            'password': $.md5($('#password').val())
+            'password': $.md5($('#password').val()),
+            'token': $.md5($.now(), $('#username').val())
         };
+        console.log("new login token: %s", newUserInfo.token);
     } else {
         // If errorCount is more than 0, error out
         alert('Please fill in all fields');
@@ -26,7 +30,8 @@ function getUserLoginInfo() {
     return newUserInfo;
 }
 
-// get user info from the new user added page
+// Returns a JSON of the user's information from the NEW USER login form.
+// Returns false if any field is left blank.
 function getNewUserInfo() {
     var errorCount = 0;
     var formIsBlank = true;
@@ -49,8 +54,10 @@ function getNewUserInfo() {
             'email': $('#email').val().trim(),
             'fullName': $('#fullName').val().trim(),
             'age': $('#age').val().trim(),
-            'location': $('#location').val().trim()
+            'location': $('#location').val().trim(),
+            'token': $.md5($.now(), $('#username').val())
         };
+        console.log("new user addition token: %s", newUserInfo.token);
     } else {
         // If errorCount is more than 0, error out
         alert('Please fill in all fields');
@@ -59,12 +66,15 @@ function getNewUserInfo() {
     return newUserInfo;
 }
 
+// Sends user information from EXISTING USER login form to the server for
+// login verification.
 function requestUserInfoViaAJAX(event) {
     /* stop form from submitting normally */
     event.preventDefault();
 
     var userinfo = getUserLoginInfo();
     console.log("retrieved userinfo: ");
+    console.log("new login token: %s", userinfo.token);
     console.log(userinfo);
     if (!userinfo)
         return false;
@@ -89,7 +99,8 @@ function requestUserInfoViaAJAX(event) {
     return true;
 }
 
-// Closure for submit on click
+// Sends user information from NEW USER login form to the server to
+// create a new user.
 function insertUserInfoViaAJAX(event) {
     /* stop form from submitting normally */
     event.preventDefault();
@@ -97,6 +108,7 @@ function insertUserInfoViaAJAX(event) {
     var userinfo = getNewUserInfo();
     console.log("retrieved userinfo: ");
     console.log(userinfo);
+    console.log("new user addition token: %s", userinfo.token);
     if (!userinfo)
         return false;
 
@@ -108,9 +120,9 @@ function insertUserInfoViaAJAX(event) {
         dataType: 'JSON'
     }).done(function(response) {
         // Check for successful (blank) response
-        if (response.msg === '') {
+        if (response.msg == '') {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
-            message += "\nWe love having new users! Just be patient while we are beta mode :)";
+            message += "\nWe love having new users! Please have patience while we are in alpha mode :)";
             alert(message);
             window.location.href = '/app.html';
         } else {
@@ -123,9 +135,32 @@ function insertUserInfoViaAJAX(event) {
     return true;
 }
 
-$(document).ready(function() {
+// Reloads the user's session, redirecting to the main app's page.
+// If there is no active session, redirect to the login page.
+function resumeSession(event) {
+    // Use AJAX to post the object to our adduser service
+    $.ajax({
+        type: 'GET',
+        data: {}, // The AJAX request will not work without a "data" value.
+        url: '/login/resumeSession',
+        dataType: 'JSON'
+    }).done(function(response) {
+        if (response.msg == '') {
+            console.log("Session is active, redirecting to main app.");
+            alert("Welcome back " + response.username + "!");
+            window.location.href = '/app.html';
+        } else {
+            alert(response.msg);
+            window.location.href = '/login/webapp_login.html';
+        }
+    });
+}
 
-    /* attach a submit handler to the form */
+$(document).ready(function() {
+    /* attach a submit handler to the new user and previous user login forms */
     $('#userinfo').submit(requestUserInfoViaAJAX);
     $('#adduserinfo').submit(insertUserInfoViaAJAX);
+    // Resume an existing session without logging in.
+    // Uses the url: /login/resumeSession
+    $('#resume-session').click(resumeSession);
 });

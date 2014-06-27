@@ -60,7 +60,6 @@ form{
     padding:6% 4%;
 }
 
-/* input[type="username"],input[type="password"]{ */
 input[type="text"]{
     width:92%;
     background:#fff;
@@ -72,7 +71,7 @@ input[type="text"]{
     color:#555;
 }
 
-input[type="submit"],input[type="switch"]{
+.button{
     width:100%;
     background:#1C9632;
     border:20;
@@ -84,11 +83,6 @@ input[type="submit"],input[type="switch"]{
     transition:background .3s;
     -webkit-transition:background .3s;
 }
-
-/* input[type="submit"],input[type="switch"]:hover{ */
-/*     /\* background:#2288bb; /\\* blue*\\/ *\/ */
-/*     /\* background:#1C9632; /\\* green*\\/ *\/ */
-/* } */
 
 #error {
     color:red;

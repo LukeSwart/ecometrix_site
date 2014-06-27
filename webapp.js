@@ -180,11 +180,13 @@ function ecoBlock(argFrame) {
             if (argFrame.btns[i] == 'yes') {
                 btn = $(window.ecometrix.resources.btn.btnYes);
                 bbox.addClass('buttons buttony');
+                // TODO: Ajax update session score?
             }
 
             if (argFrame.btns[i] == 'no') {
                 btn = $(window.ecometrix.resources.btn.btnNo);
                 bbox.addClass('buttons buttonn');
+                // TODO: Ajax update session score?
             }
             bbox.append(btn);
 
@@ -226,6 +228,7 @@ function updateScore(argID, newValue, label) {
     var domScore = jQuery('#' + argID);
     domScore.html(label + ' ' + scoreValue);
     domScore.css('width', limitPct(scoreValue) + '%');
+    // TODO: Ajax update session score?
 
 }
 
@@ -284,6 +287,7 @@ function getMoreEcoBlocks(event) {
     console.log(event.data);
     console.log(event.data.index);
 
+    // TODO: Ajax update session score?
     $.ajax({
         url: "/posts/" + event.data.index,
         cache: false
