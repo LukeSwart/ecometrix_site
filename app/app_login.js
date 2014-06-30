@@ -35,6 +35,8 @@ function getUserLoginInfo() {
 function getNewUserInfo() {
     var errorCount = 0;
     var formIsBlank = true;
+    // If we have any empty fields, notify the user
+    // and reject the form submission.
     console.log("validating for empty fields: ");
     $('#addUser input').each(function(index, val) {
         formIsBlank = false;
@@ -44,7 +46,7 @@ function getNewUserInfo() {
     });
     console.log("errorCount: " + errorCount);
 
-    // Check and make sure errorCount's still at zero
+    // Check and make sure errorCount is at zero.
     if (errorCount === 0 && !formIsBlank) {
 
         // If it is, compile all user info into one object
@@ -59,7 +61,7 @@ function getNewUserInfo() {
         };
         console.log("new user addition token: %s", newUserInfo.token);
     } else {
-        // If errorCount is more than 0, error out
+        // If errorCount is more than 0, error out.
         alert('Please fill in all fields');
         return false;
     }
@@ -72,6 +74,7 @@ function requestUserInfoViaAJAX(event) {
     /* stop form from submitting normally */
     event.preventDefault();
 
+    // Get user info from the form.
     var userinfo = getUserLoginInfo();
     console.log("retrieved userinfo: ");
     console.log("new login token: %s", userinfo.token);
@@ -82,14 +85,13 @@ function requestUserInfoViaAJAX(event) {
     $.ajax({
         type: 'GET',
         data: jQuery.param(userinfo),
-        // contentType: 'application/json; charset=utf-8',
         url: '/login/verify',
         dataType: 'JSON'
     }).done(function(response) {
         if (response.msg == '') {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             alert(message);
-            window.location.href = '/app.html';
+            window.location.href = '/app/app.html';
         } else {
             alert("error: " + response.msg);
         }
@@ -105,6 +107,7 @@ function insertUserInfoViaAJAX(event) {
     /* stop form from submitting normally */
     event.preventDefault();
 
+    // Get user info from the form.
     var userinfo = getNewUserInfo();
     console.log("retrieved userinfo: ");
     console.log(userinfo);
@@ -119,14 +122,14 @@ function insertUserInfoViaAJAX(event) {
         url: '/login/adduser',
         dataType: 'JSON'
     }).done(function(response) {
-        // Check for successful (blank) response
         if (response.msg == '') {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             message += "\nWe love having new users! Please have patience while we are in alpha mode :)";
             alert(message);
-            window.location.href = '/app.html';
+            window.location.href = '/app/app.html';
         } else {
-            // If something goes wrong, alert the error message that our service returned
+            // If we get an error, send alert with the error message
+            // from our service.
             alert('Error: ' + response.msg);
         }
         // Clear the form inputs
@@ -138,6 +141,9 @@ function insertUserInfoViaAJAX(event) {
 // Reloads the user's session, redirecting to the main app's page.
 // If there is no active session, redirect to the login page.
 function resumeSession(event) {
+    /* stop form from submitting normally */
+    event.preventDefault();
+
     // Use AJAX to post the object to our adduser service
     $.ajax({
         type: 'GET',
@@ -147,11 +153,10 @@ function resumeSession(event) {
     }).done(function(response) {
         if (response.msg == '') {
             console.log("Session is active, redirecting to main app.");
-            alert("Welcome back " + response.username + "!");
-            window.location.href = '/app.html';
+            window.location.href = '/app/app.html';
         } else {
-            alert(response.msg);
-            window.location.href = '/login/webapp_login.html';
+            alert("Have you logged in?\n" + response.msg);
+            window.location.href = '/app/app_login.html';
         }
     });
 }

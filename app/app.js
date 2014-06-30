@@ -1,7 +1,5 @@
-/*  A. Start with question only
-    B. Click on question then show buttons
-    C. Click on buttons, hide questions and buttons, show ad and motivation 
-  */
+// Defines the initial content and interaction for the app's 
+// main question page.
 function initiateBehavior() {
     // initially hide all motivation
     $(".motivation").hide();
@@ -11,7 +9,6 @@ function initiateBehavior() {
     // Allow questions to be opened or closed
     $(".qtext").unbind('click');
     $(".qtext").click(function(e) {
-
 
         /* debug info */
         var hasOpenQ = $(this).hasClass("openQ");
@@ -50,7 +47,6 @@ function initiateBehavior() {
 
             $(this).parents(".question").find(".qinfo").slideUp();
 
-
             $(this).parent().slideUp();
             $(this).parents(".question").find(".motivation").slideDown();
 
@@ -58,13 +54,14 @@ function initiateBehavior() {
         }
     );
 
+    // TODO: Define the interaction for "yes" and "no" responses. 
+    // This code is just a sketch.
     /*   // If you click yes or no, then show the motivation
   $(".buttony button").click(
   function() {
       $(this).parents(".question").find(".qtext").slideUp();
     
     $(this).parents(".question").find(".qinfo").slideUp();
-  
     
     $(this).parent().slideUp();
               $(this).parents(".question").find(".motivation").slideDown(); 
@@ -81,32 +78,16 @@ function initiateBehavior() {
   ); */
 
     $(".ad").hide();
-
-    // // TEST for loading next questions
-    // // $(".far-rightpill").on("click", function
-    // var nextQuestions = $("#nextquestions");
-    // console.log("nextQuestions value is: " + nextQuestions);
-    // nextQuestions.click(function() {
-    //     console.log("nextQuestions was clicked");
-    //     // TODO: increment counter to get next round of questions. Delete previous questions, and notify user if no more questions are left.
-    //     getMoreEcoBlocks(2);
-    // });
-
 } // end initiate behavior
-
-
 
 /*
  * Renderer
  */
-
 function ecoRender() {
     for (var i = 0; i < window.ecometrix.questions.data.length; i++) {
-
         //console.log ("what is the ith:"+i+ window.ecometrix.questions.data[i] );
         //console.log ("data: "+i+ window.ecometrix.questions.data[i] );
         //console.log ("buttons: "+i+ window.ecometrix.questions.data[i] );
-
         ecoBlock(window.ecometrix.questions.data[i]);
     }
 }
@@ -155,10 +136,8 @@ function ecoBlock(argFrame) {
         if (argFrame.type == "twitter") {
             content.addClass('ttext');
         }
-
         content.appendTo(newBlock);
     }
-
 
     // frame info
     if (typeof argFrame.info != "undefined") {
@@ -168,33 +147,26 @@ function ecoBlock(argFrame) {
         info.appendTo(newBlock);
     }
 
-
     // frame buttonBox
     if (argFrame.btns != "undefined") {
         var bbox = $('<div>');
         for (var i = 0; i < argFrame.btns.length; i++) {
             var btn = $('<button>');
 
-
-
+            // TODO: Do something based on user responses.
             if (argFrame.btns[i] == 'yes') {
                 btn = $(window.ecometrix.resources.btn.btnYes);
                 bbox.addClass('buttons buttony');
-                // TODO: Ajax update session score?
             }
 
             if (argFrame.btns[i] == 'no') {
                 btn = $(window.ecometrix.resources.btn.btnNo);
                 bbox.addClass('buttons buttonn');
-                // TODO: Ajax update session score?
             }
             bbox.append(btn);
-
-
         }
         bbox.appendTo(newBlock);
     }
-
 
     // frame info
 
@@ -208,7 +180,6 @@ function ecoBlock(argFrame) {
            }
     */
 
-
     if (typeof argFrame.motivation != "undefined") {
         var motivation =
             $('<div>').text(argFrame.motivation);
@@ -218,9 +189,7 @@ function ecoBlock(argFrame) {
 
     // add to ecoblocks
     $("#ecoblocks").append(newBlock);
-
 }
-
 
 function updateScore(argID, newValue, label) {
 
@@ -287,7 +256,8 @@ function getMoreEcoBlocks(event) {
     console.log(event.data);
     console.log(event.data.index);
 
-    // TODO: Ajax update session score?
+    // Retrieve more questions from the server. 
+    // Increment our index of questions.
     $.ajax({
         url: "/posts/" + event.data.index,
         cache: false
@@ -300,11 +270,33 @@ function getMoreEcoBlocks(event) {
             splashScreen(400);
             event.data.index++;
         });
-    // do nothing if this fails
+    // TODO: Do something if this fails...
 }
+
+function checkForValidSession() {
+    $.ajax({
+        type: 'GET',
+        data: {}, // The AJAX request will not work without a "data" value.
+        url: '/login/resumeSession',
+        dataType: 'JSON'
+    }).done(function(response) {
+        if (response.msg == '') {
+            console.log("Session is active, redirecting to main app.");
+            alert("Welcome to Ecometrix " + response.username + "!\nClick around to get started, or resume your old session.");
+            // Continue to the main app page.
+        } else {
+            alert("Please create an account to get started!");
+            // alert(response.msg);
+            window.location.href = '/app/app_login.html';
+        }
+    });
+
+}
+
 
 $(document).ready(function() {
 
+    checkForValidSession();
     /*
      * Static content
      */
@@ -365,7 +357,9 @@ $(document).ready(function() {
     splashScreen();
     var index = 1;
 
-    $("#nextquestions").click({index : index}, getMoreEcoBlocks); 
+    $("#nextquestions").click({
+        index: index
+    }, getMoreEcoBlocks);
 
     // custom footer controller
     $('#footernav a').click(function(e) {

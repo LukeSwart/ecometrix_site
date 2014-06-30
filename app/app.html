@@ -1,0 +1,138 @@
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+
+<head>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- GLYPH ICONS START-->
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">
+    <!-- GLYPH ICONS END -->
+    <script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="app.js"></script>
+
+</head>
+
+<body style="">
+
+    <div class='tack'>
+        <!-- Ecoheader -->
+        <div class="row ecobackground">
+            <div class="row ecoheader">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+
+        <!-- Score -->
+        <div class="row ecobackground scorebox">
+            <div class="score">
+                <div id='ecoscore' class='friend' style="width: 1%;">EcoScore 0a
+                </div>
+                <div id='qscore' class='foe' style="width: 1%;">Questions: 0
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- tack -->
+
+    <div class='tackFollow'>
+    </div>
+
+    <!-- Nav Controlled-->
+    <div class="tab-content" id="tabcontrolled">
+
+        <!-- Splash Screen -->
+        <div class="tab-pane container-full" id="splash">
+
+            <div id="splash" class="row">
+                <div class="col-md-9">
+                    <img src="http://ecometrix.co/img/ecometrixlogo.png">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Ecoblock Container -->
+        <div class="tab-pane container-full" id="questions">
+
+            <div id="ecoblocks">
+            </div>
+            <!-- end ecoblock container  -->
+
+            <div class="ad">
+                <div class="col-md-9">Ad</div>
+            </div>
+
+            <div class="row">
+            </div>
+
+        </div>
+
+        <!-- Score Container -->
+        <!-- Frame green points, questions answered, how green you are in comparison to everyone else, graph, share with facebook -->
+        <div class="tab-pane container-full" id="score">
+
+            <div id="points">
+            </div>
+
+            <div id="progress">
+            </div>
+
+            <div id="overall">
+            </div>
+
+            <div id="overallgraph">
+            </div>
+
+            <div id="fbookshare">
+            </div>
+
+            <div class="ad">
+                <div class="col-md-9">Ad</div>
+            </div>
+
+            <div class="row">
+            </div>
+
+        </div>
+
+        <!-- Gift Container -->
+        <div class="tab-pane container-full" id="gift">
+
+            <div class="ad">
+                <div class="col-md-9">Ad</div>
+            </div>
+
+            <div class="row">
+            </div>
+
+        </div>
+
+    </div>
+    <!-- end tab container -->
+
+    <!-- footer -->
+    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="footernav">
+        <div class="container-full">
+
+            <ul class="nav nav-pills econav">
+                <li class="active leftpill">
+                    <a href="#questions" data-toggle="tab">Questions</a>
+                </li>
+                <li class="midpill">
+                    <a href="#score" data-toggle="tab">Score</a>
+                </li>
+                <li class="rightpill">
+                    <a href="#gift" data-toggle="tab">Gift</a>
+                </li>
+                <li class="far-rightpill" id="nextquestions">
+                    <a href="#questions" data-toggle="tab">Next Questions</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</body>
+</html>
