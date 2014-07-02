@@ -60,7 +60,7 @@ form{
     padding:6% 4%;
 }
 
-input[type="text"]{
+input[type="text"],[type="password"]{
     width:92%;
     background:#fff;
     margin-bottom:4%;
