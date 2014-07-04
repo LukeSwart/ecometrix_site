@@ -311,17 +311,16 @@ $(document).ready(function() {
     window.ecometrix.questions = {
         "data": [{
             "type": "question",
-            "content": "q1.content",
-            "info": "q2.info",
+            "content": "Lifestyle habits",
+            "info": "Are your showers longer than 10 minutes?rq1.info",
             "btns": ["yes", "no"],
-            "motivation": "m1"
+            "motivation": "Recommended shower times are less than 8 mins. Shortening your shower by just a minute or two can save up to 150 gallons per month. Use a timer to set a limit to your shower, and stick to it!"
         }, {
             "type": "question",
-            "content": "q2.content",
-            "info": "q2.info",
+            "content": "Housing",
+            "info": "Do you live in a house or apartment?",
             "btns": ["yes", "no"],
-
-            "motivation": "m2"
+            "motivation": "Apartments conserve much more energy through shared utilities and closer living quarters. Houses can often compensate by living with roommates and family. "
         }, {
             "type": "twitter",
             "content": "ttr1.content",
@@ -330,12 +329,39 @@ $(document).ready(function() {
             "motivation": "ttrm1"
         }, {
             "type": "question",
-            "content": "q3.content",
-            "info": "q3.info",
+            "content": "Social Living",
+            "info": "Do you live with another person?",
             "btns": ["yes", "no"],
-            "motivation": "m3"
+            "motivation": "Communal living bolsters sustainability and reduces our carbon footprint through sharing resources. Whether you are sharing food, heating, or trips to the grocery store, having roommates encourages a sustainable lifestyle. [roommate sharing adds]"
         }]
     };
+    //     "data": [{
+    //         "type": "question",
+    //         "content": "q1.content",
+    //         "info": "q2.info",
+    //         "btns": ["yes", "no"],
+    //         "motivation": "m1"
+    //     }, {
+    //         "type": "question",
+    //         "content": "q2.content",
+    //         "info": "q2.info",
+    //         "btns": ["yes", "no"],
+
+    //         "motivation": "m2"
+    //     }, {
+    //         "type": "twitter",
+    //         "content": "ttr1.content",
+    //         "info": "ttr2.info",
+    //         "btns": ["yes", "no"],
+    //         "motivation": "ttrm1"
+    //     }, {
+    //         "type": "question",
+    //         "content": "q3.content",
+    //         "info": "q3.info",
+    //         "btns": ["yes", "no"],
+    //         "motivation": "m3"
+    //     }]
+    // };
 
     window.ecometrix.resources = {
         "btn": {
