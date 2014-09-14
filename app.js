@@ -277,7 +277,7 @@ function checkForValidSession() {
     $.ajax({
         type: 'GET',
         data: {}, // The AJAX request will not work without a "data" value.
-        url: '/login/resumeSession',
+        url: '/login/verify',
         dataType: 'JSON'
     }).done(function(response) {
         if (response.msg == '') {
@@ -287,10 +287,9 @@ function checkForValidSession() {
         } else {
             alert("Please create an account to get started!");
             // alert(response.msg);
-            window.location.href = '/app/app_login.html';
+            window.location.href = '/app_login.html';
         }
     });
-
 }
 
 
