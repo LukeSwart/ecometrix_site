@@ -14,8 +14,8 @@ function initiateBehavior() {
         var hasOpenQ = $(this).hasClass("openQ");
         var hasInitQ = $(this).hasClass(".initQ");
 
-        console.log("clicked, yo. isOpen" + hasOpenQ +
-            " isInit" + hasInitQ);
+        console.log("clicked, isOpen: " + hasOpenQ +
+            " isInit: " + hasInitQ);
 
         /*
     Toggle line height
@@ -277,7 +277,7 @@ function checkForValidSession() {
     $.ajax({
         type: 'GET',
         data: {}, // The AJAX request will not work without a "data" value.
-        url: '/login/verify',
+        url: '/login/resumeSession',
         dataType: 'JSON'
     }).done(function(response) {
         if (response.msg == '') {
