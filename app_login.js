@@ -38,7 +38,7 @@ function getNewUserInfo() {
     // If we have any empty fields, notify the user
     // and reject the form submission.
     console.log("validating for empty fields: ");
-    $('#addUser input').each(function(index, val) {
+    $('#addUser input').filter('.required').each(function(index, val) {
         formIsBlank = false;
         if ($(this).val() === '') {
             errorCount++;
