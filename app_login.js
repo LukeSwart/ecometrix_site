@@ -21,7 +21,7 @@ function getUserLoginInfo() {
             'password': $.md5($('#password').val()),
             'token': $.md5($.now(), $('#username').val())
         };
-        console.log("new login token: %s", newUserInfo.token);
+//        console.log("new login token: %s", newUserInfo.token);
     } else {
         // If errorCount is more than 0, error out
         alert('Please fill in all fields');
@@ -57,6 +57,7 @@ function getNewUserInfo() {
             'fullName': $('#fullName').val().trim(),
             'age': $('#age').val().trim(),
             'location': $('#location').val().trim(),
+            'cumulativePoints': 0,
             'token': $.md5($.now(), $('#username').val())
         };
         console.log("new user addition token: %s", newUserInfo.token);
@@ -74,11 +75,11 @@ function requestUserInfoViaAJAX(event) {
     /* stop form from submitting normally */
     event.preventDefault();
 
-    // Get user info from the form.
+// Get user info from the form.
     var userinfo = getUserLoginInfo();
-    console.log("retrieved userinfo: ");
-    console.log("new login token: %s", userinfo.token);
-    console.log(userinfo);
+//    console.log("retrieved userinfo: ");
+//    console.log("new login token: %s", userinfo.token);
+//    console.log(userinfo);
     if (!userinfo)
         return false;
 

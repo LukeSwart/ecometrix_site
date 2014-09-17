@@ -15,7 +15,7 @@ function initiateBehavior() {
         var hasInitQ = $(this).hasClass(".initQ");
 
         console.log("clicked, isOpen: " + hasOpenQ +
-            " isInit: " + hasInitQ);
+            ", isInit: " + hasInitQ);
 
         /*
     Toggle line height
@@ -50,32 +50,40 @@ function initiateBehavior() {
             $(this).parent().slideUp();
             $(this).parents(".question").find(".motivation").slideDown();
 
-            updateGraph();
+            updateQuestionGraph();
         }
     );
 
-    // TODO: Define the interaction for "yes" and "no" responses. 
-    // This code is just a sketch.
-    /*   // If you click yes or no, then show the motivation
-  $(".buttony button").click(
-  function() {
-      $(this).parents(".question").find(".qtext").slideUp();
-    
-    $(this).parents(".question").find(".qinfo").slideUp();
-    
-    $(this).parent().slideUp();
-              $(this).parents(".question").find(".motivation").slideDown(); 
-  Todo: do something different for yes and no
-      $(this).hasC
-    
-  }
-  );
-  
-  $(".buttony").click(
-  function() {
-              $(this).parents(".question").find(".motivation").slideDown();
-  }
-  ); */
+    // If you click yes or no, then show the motivation
+    $(".buttony").unbind('click');
+    $(".buttony").click(
+        function() {
+            console.log("Clicked yes button - add some points!");
+            var newPoints = 1;
+
+//  Todo: do something different for yes and no
+
+
+            var setCumulativePoints = function(newCumulativePoints) {
+                cumulativePoints = newCumulativePoints;
+                updateEcoscoreGraph(cumulativePoints);
+            };
+            // Retrieve more questions from the server.
+            // Increment our index of questions.
+            var cumulativePoints = 0;
+            $.ajax({
+                type: 'PUT',
+                data: {'newPoints': newPoints},
+                url: "/score",
+                dataType: 'JSON',
+                success: function(data) {
+//                    cumulativePoints = data.msg;
+                    console.log("incremented cumulativePoints to: " + data.msg);
+                    setCumulativePoints(data.msg);
+                }
+            });
+        });
+
 
     $(".ad").hide();
 } // end initiate behavior
@@ -192,12 +200,12 @@ function ecoBlock(argFrame) {
 }
 
 function updateScore(argID, newValue, label) {
-
+// 'ecoscore', 'ecoScore'
+// 'qscore', 'Questions'
     var scoreValue = Math.round(newValue);
     var domScore = jQuery('#' + argID);
     domScore.html(label + ' ' + scoreValue);
     domScore.css('width', limitPct(scoreValue) + '%');
-    // TODO: Ajax update session score?
 
 }
 
@@ -229,13 +237,22 @@ function completedQuestions() {
 
 }
 
-
-function updateGraph() {
+function updateQuestionGraph() {
 
     var completedQ = (completedQuestions() / (numQuestions())) * 100;
+    console.log('updating questions with completedQ:' + completedQ);
     updateScore('qscore',
         completedQ,
         'Questions');
+}
+
+function updateEcoscoreGraph(positiveAnswers) {
+
+    var ecoscore = (positiveAnswers / (numQuestions())) * 100;
+    console.log('updating ecoscore with ecoscore:' + ecoscore);
+    console.log('updating ecoscore with positiveAnswers:' + positiveAnswers);
+    console.log('updating ecoscore with numQuestions():' + numQuestions());
+    updateScore('ecoscore', ecoscore, 'ecoScore');
 }
 
 function splashScreen(duration) {
@@ -266,7 +283,7 @@ function getMoreEcoBlocks(event) {
             window.ecometrix.questions = json;
             ecoRender();
             initiateBehavior();
-            updateGraph();
+            updateQuestionGraph();
             splashScreen(400);
             event.data.index++;
         });
@@ -334,33 +351,6 @@ $(document).ready(function() {
             "motivation": "Communal living bolsters sustainability and reduces our carbon footprint through sharing resources. Whether you are sharing food, heating, or trips to the grocery store, having roommates encourages a sustainable lifestyle. [roommate sharing adds]"
         }]
     };
-    //     "data": [{
-    //         "type": "question",
-    //         "content": "q1.content",
-    //         "info": "q2.info",
-    //         "btns": ["yes", "no"],
-    //         "motivation": "m1"
-    //     }, {
-    //         "type": "question",
-    //         "content": "q2.content",
-    //         "info": "q2.info",
-    //         "btns": ["yes", "no"],
-
-    //         "motivation": "m2"
-    //     }, {
-    //         "type": "twitter",
-    //         "content": "ttr1.content",
-    //         "info": "ttr2.info",
-    //         "btns": ["yes", "no"],
-    //         "motivation": "ttrm1"
-    //     }, {
-    //         "type": "question",
-    //         "content": "q3.content",
-    //         "info": "q3.info",
-    //         "btns": ["yes", "no"],
-    //         "motivation": "m3"
-    //     }]
-    // };
 
     window.ecometrix.resources = {
         "btn": {
@@ -372,12 +362,27 @@ $(document).ready(function() {
     /*
      *  Render data, attach behavior
      */
-    updateScore('ecoscore', 0, 'ecoScore');
-    console.log("questions to be rendered: " + window.ecometrix.questions);
+    var cumulativePoints = 0;
+    // Retrieve more questions from the server.
+    // Increment our index of questions.
+    $.ajax({
+        type: 'GET',
+        data: {},
+        url: "/score",
+        dataType: 'JSON'
+    }).done(function(response) {
+        cumulativePoints = response.msg;
+        console.log("updated cumulativePoints to: " + cumulativePoints);
+    });
+
+    console.log("Cumulative points: " + cumulativePoints);
+    if (!cumulativePoints)
+        cumulativePoints = 0;
 
     ecoRender();
     initiateBehavior();
-    updateGraph();
+    updateQuestionGraph();
+    updateEcoscoreGraph(cumulativePoints);
     // getMoreEcoBlocks(1);
     splashScreen();
     var index = 1;
