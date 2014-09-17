@@ -78,7 +78,7 @@ body {
 /* Header */
 
 .ecoheader {
-    background-image: url('/img/ecometrixheader.jpg');
+    background-image: url('img/ecometrixheader.jpg');
     background-repeat: none;
     line-height: 51px;
     width: 320px;
