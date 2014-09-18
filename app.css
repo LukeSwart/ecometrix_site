@@ -34,6 +34,7 @@
     line-height: 35px;
     float: right;
     padding-bottom: 5px;
+    color: black;/* non-Bootstrap support */
 }
 .motivation {
     height: 128px;
@@ -48,6 +49,7 @@
 }
 .btn:hover {
     background: lightGreen;
+    color: black; /*non-Bootstrap support */
 }
 /* Ecoblocks */
 

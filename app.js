@@ -180,6 +180,26 @@ function ecoBlock(argFrame) {
                     btn.val(current.value);
                     bbox.addClass('buttons buttonn');
                     break;
+                case 'zero':
+                    btn = $(window.ecometrix.resources.btn.btnZero);
+                    btn.val(current.value);
+                    bbox.addClass('buttons buttony'); // we need to add '.buttony' for our js functions
+                    break;
+                case 'one':
+                    btn = $(window.ecometrix.resources.btn.btnOne);
+                    btn.val(current.value);
+                    bbox.addClass('buttons buttony');
+                    break;
+                case 'two':
+                    btn = $(window.ecometrix.resources.btn.btnTwo);
+                    btn.val(current.value);
+                    bbox.addClass('buttons buttony');
+                    break;
+                case 'threePlus':
+                    btn = $(window.ecometrix.resources.btn.btnThreePlus);
+                    btn.val(current.value);
+                    bbox.addClass('buttons buttony');
+                    break;
                 default:
                     console.log("WARNING: unrecognized button type.")
             }
@@ -237,6 +257,13 @@ function limitPct(argPct) {
     return limitThis;
 }
 
+function possiblePoints() {
+
+//    return jQuery("#ecoblocks div.question").length;
+    return 14;
+
+}
+
 function numQuestions() {
 
 //    return jQuery("#ecoblocks div.question").length;
@@ -261,7 +288,7 @@ function updateQuestionGraph() {
 
 function updateEcoscoreGraph(positiveAnswers) {
 
-    var ecoscore = (positiveAnswers / (numQuestions())) * 100;
+    var ecoscore = (positiveAnswers / (possiblePoints())) * 100;
     updateScore('ecoscore', ecoscore, 'ecoScore');
 }
 
@@ -367,11 +394,13 @@ $(document).ready(function() {
         }, {
             "type": "question",
             "content": "Social Living",
-            "info": "Do you live with another person, like a roommate?",
+            "info": "How many people do you live with?",
 //            "btns": ["yes", "no"],
             "btns": [
-                {"type": "yes", "value": "1"},
-                {"type": "no", "value": "0"}
+                {"type": "zero", "value": "0"},
+                {"type": "one", "value": "1"},
+                {"type": "two", "value": "2"},
+                {"type": "threePlus", "value": "3"}
             ],
             "motivation": "Communal living bolsters sustainability and reduces our carbon footprint through sharing resources. Whether you are sharing food, heating, or trips to the grocery store, having roommates encourages a sustainable lifestyle. [roommate sharing adds]"
         }]
@@ -380,7 +409,11 @@ $(document).ready(function() {
     window.ecometrix.resources = {
         "btn": {
             "btnYes": "<button  type=\"button\" class=\"btn btn-success yesB the-icons clearfix\"><i class=\"icon-ok\"></i></button>",
-            "btnNo": "<button  type=\"button\" class=\"noB btn btn-success\"><i class=\"icon-remove\"></i></button>"
+            "btnNo": "<button  type=\"button\" class=\"noB btn btn-success\"><i class=\"icon-remove\"></i></button>",
+            "btnZero": "<button type=\"button\" class=\"btn btn-success buttony\">0</button>",
+            "btnOne": "<button type=\"button\" class=\"btn btn-success buttony\">1</button>",
+            "btnTwo": "<button type=\"button\" class=\"btn btn-success buttony\">2</button>",
+            "btnThreePlus": "<button type=\"button\" class=\"btn btn-success buttony\">3+</button>"
         }
     };
 
