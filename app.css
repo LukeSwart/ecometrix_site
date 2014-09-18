@@ -102,15 +102,15 @@ body {
     margin: 1px;
     color: white;
 }
-.score .foe {
-    font: 10px sans-serif;
+/*.score .foe {*/
+    /*font: 10px sans-serif;*/
     /*background-color: #bd8a00;*/
-    background-color: #5AB516;
-    text-align: right;
-    padding: 3px;
-    margin: 1px;
-    color: white;
-}
+    /*background-color: #5AB516;*/
+    /*text-align: right;*/
+    /*padding: 3px;*/
+    /*margin: 1px;*/
+    /*color: white;*/
+/*}*/
 .scorebox {
     padding-top: 1px;
     padding-bottom: 1px;
@@ -123,8 +123,10 @@ body {
     width: 100%;
     left: 0;
 }
+/* Creates space between header and questions */
 .tackFollow {
-    margin: 90px;
+    /*margin: 90px; */ /*used with questions scorebar */
+    margin: 70px;
 }
 /* override responsive design where this scales for small displays */
 

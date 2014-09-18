@@ -33,7 +33,6 @@ function initiateBehavior() {
 
             // embiggen
             $(this).removeClass("initQ").addClass("openQ");
-
             $(this).parents(".question").find(".qinfo").slideDown();
             $(this).parent(".question").find(".buttons").slideDown();
         }
@@ -50,7 +49,7 @@ function initiateBehavior() {
             $(this).parent().slideUp();
             $(this).parents(".question").find(".motivation").slideDown();
 
-            updateQuestionGraph();
+//            updateQuestionGraph();
         }
     );
 
@@ -227,7 +226,8 @@ function limitPct(argPct) {
 
 function numQuestions() {
 
-    return jQuery("#ecoblocks div.question").length;
+//    return jQuery("#ecoblocks div.question").length;
+    return 15;
 
 }
 
@@ -283,7 +283,7 @@ function getMoreEcoBlocks(event) {
             window.ecometrix.questions = json;
             ecoRender();
             initiateBehavior();
-            updateQuestionGraph();
+//            updateQuestionGraph();
             splashScreen(400);
             event.data.index++;
         });
@@ -381,7 +381,7 @@ $(document).ready(function() {
 
     ecoRender();
     initiateBehavior();
-    updateQuestionGraph();
+//    updateQuestionGraph();
     updateEcoscoreGraph(cumulativePoints);
     // getMoreEcoBlocks(1);
     splashScreen();
