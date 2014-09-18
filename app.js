@@ -168,20 +168,20 @@ function ecoBlock(argFrame) {
         for (var i = 0; i < argFrame.btns.length; i++) {
             var btn = $('<button>');
 
-            // type 'yes' => class btnYes
-            if (argFrame.btns[i].type == 'yes') {
-                btn = $(window.ecometrix.resources.btn.btnYes);
-//                btn.val('1');
-                btn.val(argFrame.btns[i].value);
-                bbox.addClass('buttons buttony');
-            }
-
-            // type 'no' => class btnNo
-            if (argFrame.btns[i].type == 'no') {
-                btn = $(window.ecometrix.resources.btn.btnNo);
-//                btn.val('0');
-                btn.val(argFrame.btns[i].value);
-                bbox.addClass('buttons buttonn');
+            var current = argFrame.btns[i];
+            switch(current.type) {
+                case 'yes':
+                    btn = $(window.ecometrix.resources.btn.btnYes);
+                    btn.val(current.value);
+                    bbox.addClass('buttons buttony');
+                    break;
+                case 'no':
+                    btn = $(window.ecometrix.resources.btn.btnNo);
+                    btn.val(current.value);
+                    bbox.addClass('buttons buttonn');
+                    break;
+                default:
+                    console.log("WARNING: unrecognized button type.")
             }
             bbox.append(btn);
         }
@@ -240,7 +240,7 @@ function limitPct(argPct) {
 function numQuestions() {
 
 //    return jQuery("#ecoblocks div.question").length;
-    return 15;
+    return 12;
 
 }
 
