@@ -53,11 +53,10 @@ function initiateBehavior() {
         }
     );
 
-    // If you click yes or no, then show the motivation
-    $(".buttony").unbind('click');
-    $(".buttony").click(
+    // If you click yes or no, then update the eco points
+    $(".yesB").click(
         function() {
-            console.log("Clicked yes button - add some points!");
+            console.log("Clicked yes button - update the eco points!");
             var newPoints = 1;
 
 //  Todo: do something different for yes and no
