@@ -380,7 +380,7 @@ $(document).ready(function() {
     window.ecometrix.resources = {
         "btn": {
             "btnYes": "<button  type=\"button\" class=\"btn btn-success yesB the-icons clearfix\"><i class=\"icon-ok\"></i></button>",
-            "btnNo": "<button  type=\"button\" class=\"noB btn btn-danger\"><i class=\"icon-remove\"></i></button>"
+            "btnNo": "<button  type=\"button\" class=\"noB btn btn-success\"><i class=\"icon-remove\"></i></button>"
         }
     };
 
