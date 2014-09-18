@@ -211,8 +211,8 @@ function limitPct(argPct) {
     var limitThis = argPct;
 
     // lower limit %
-    if (limitThis <= 10) {
-        limitThis = 13;
+    if (limitThis <= 8) {
+        limitThis = 10;
     }
 
     // upper limit %
@@ -248,9 +248,6 @@ function updateQuestionGraph() {
 function updateEcoscoreGraph(positiveAnswers) {
 
     var ecoscore = (positiveAnswers / (numQuestions())) * 100;
-    console.log('updating ecoscore with ecoscore:' + ecoscore);
-    console.log('updating ecoscore with positiveAnswers:' + positiveAnswers);
-    console.log('updating ecoscore with numQuestions():' + numQuestions());
     updateScore('ecoscore', ecoscore, 'ecoScore');
 }
 
