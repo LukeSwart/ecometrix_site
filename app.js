@@ -168,16 +168,19 @@ function ecoBlock(argFrame) {
         for (var i = 0; i < argFrame.btns.length; i++) {
             var btn = $('<button>');
 
-            // TODO: Do something based on user responses.
-            if (argFrame.btns[i] == 'yes') {
+            // type 'yes' => class btnYes
+            if (argFrame.btns[i].type == 'yes') {
                 btn = $(window.ecometrix.resources.btn.btnYes);
-                btn.val('1');
+//                btn.val('1');
+                btn.val(argFrame.btns[i].value);
                 bbox.addClass('buttons buttony');
             }
 
-            if (argFrame.btns[i] == 'no') {
+            // type 'no' => class btnNo
+            if (argFrame.btns[i].type == 'no') {
                 btn = $(window.ecometrix.resources.btn.btnNo);
-                btn.val('0');
+//                btn.val('0');
+                btn.val(argFrame.btns[i].value);
                 bbox.addClass('buttons buttonn');
             }
             bbox.append(btn);
@@ -336,25 +339,40 @@ $(document).ready(function() {
             "type": "question",
             "content": "Lifestyle habits",
             "info": "Are your showers longer than 10 minutes?",
-            "btns": ["yes", "no"],
+            "btns": [
+                {"type": "yes", "value": "0"},
+                {"type": "no", "value": "1"}
+            ],
             "motivation": "Recommended shower times are less than 8 mins. Shortening your shower by just a minute or two can save up to 150 gallons per month. Use a timer to set a limit to your shower, and stick to it!"
         }, {
             "type": "question",
             "content": "Housing",
-            "info": "Do you live in a house or apartment?",
-            "btns": ["yes", "no"],
+            "info": "Do you live in a house?",
+//            "btns": ["yes", "no"],
+            "btns": [
+                {"type": "yes", "value": "0"},
+                {"type": "no", "value": "1"}
+            ],
             "motivation": "Apartments conserve much more energy through shared utilities and closer living quarters. Houses can often compensate by living with roommates and family. "
         }, {
             "type": "twitter",
             "content": "ttr1.content",
             "info": "ttr2.info",
-            "btns": ["yes", "no"],
+//            "btns": ["yes", "no"],
+            "btns": [
+                {"type": "yes", "value": "1"},
+                {"type": "no", "value": "0"}
+            ],
             "motivation": "ttrm1"
         }, {
             "type": "question",
             "content": "Social Living",
-            "info": "Do you live with another person?",
-            "btns": ["yes", "no"],
+            "info": "Do you live with another person, like a roommate?",
+//            "btns": ["yes", "no"],
+            "btns": [
+                {"type": "yes", "value": "1"},
+                {"type": "no", "value": "0"}
+            ],
             "motivation": "Communal living bolsters sustainability and reduces our carbon footprint through sharing resources. Whether you are sharing food, heating, or trips to the grocery store, having roommates encourages a sustainable lifestyle. [roommate sharing adds]"
         }]
     };
