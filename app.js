@@ -50,16 +50,24 @@ function initiateBehavior() {
             $(this).parents(".question").find(".motivation").slideDown();
 
 //            updateQuestionGraph();
+            scoreFromButton($(this).attr("value"));
         }
     );
 
     // If you click yes or no, then update the eco points
-    $(".yesB").click(
-        function() {
-            console.log("Clicked yes button - update the eco points!");
-            var newPoints = 1;
+//    $(".yesB").click(
+//        function() {
+    function scoreFromButton(newPoints) {
+            console.log("Clicked score button - update the eco points!");
+//            var newPoints = 1;
+//            var newPoints = $(this).attr("value");
+            console.log('new points is: ' + newPoints);
 
-//  Todo: do something different for yes and no
+//            newPoints = parseInt(newPoints);
+//            console.log('new points, parsed, is: ' + newPoints);
+//            console.log(newPoints);
+
+            // TODO: do something different for yes and no
 
 
             var setCumulativePoints = function(newCumulativePoints) {
@@ -80,7 +88,8 @@ function initiateBehavior() {
                     setCumulativePoints(data.msg);
                 }
             });
-        });
+//        });
+    };
 
 
     $(".ad").hide();
@@ -162,11 +171,13 @@ function ecoBlock(argFrame) {
             // TODO: Do something based on user responses.
             if (argFrame.btns[i] == 'yes') {
                 btn = $(window.ecometrix.resources.btn.btnYes);
+                btn.val('1');
                 bbox.addClass('buttons buttony');
             }
 
             if (argFrame.btns[i] == 'no') {
                 btn = $(window.ecometrix.resources.btn.btnNo);
+                btn.val('0');
                 bbox.addClass('buttons buttonn');
             }
             bbox.append(btn);
