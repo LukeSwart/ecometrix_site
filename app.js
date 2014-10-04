@@ -366,27 +366,15 @@ $(document).ready(function() {
             "type": "question",
             "content": "Housing",
             "info": "Do you live in a house?",
-//            "btns": ["yes", "no"],
             "btns": [
                 {"type": "yes", "value": "0"},
                 {"type": "no", "value": "1"}
             ],
             "motivation": "Apartments conserve much more energy through shared utilities and closer living quarters. Houses can often compensate by living with roommates and family. "
         }, {
-            "type": "twitter",
-            "content": "ttr1.content",
-            "info": "ttr2.info",
-//            "btns": ["yes", "no"],
-            "btns": [
-                {"type": "yes", "value": "1"},
-                {"type": "no", "value": "0"}
-            ],
-            "motivation": "ttrm1"
-        }, {
             "type": "question",
             "content": "Social Living",
             "info": "How many people do you live with?",
-//            "btns": ["yes", "no"],
             "btns": [
                 {"type": "zero", "value": "0"},
                 {"type": "one", "value": "1"},
