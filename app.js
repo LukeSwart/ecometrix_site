@@ -7,8 +7,9 @@ function initiateBehavior() {
     $(".qinfo").hide();
 
     // Allow questions to be opened or closed
-    $(".qtext").unbind('click');
-    $(".qtext").click(function(e) {
+    var texts = $(".qtext");
+    texts.unbind('click');
+    texts.click(function(e) {
 
         /* debug info */
         var hasOpenQ = $(this).hasClass("openQ");
@@ -31,7 +32,7 @@ function initiateBehavior() {
 
         } else {
 
-            // embiggen
+            // enlarge
             $(this).removeClass("initQ").addClass("openQ");
             $(this).parents(".question").find(".qinfo").slideDown();
             $(this).parent(".question").find(".buttons").slideDown();
@@ -39,8 +40,9 @@ function initiateBehavior() {
     });
 
     // If you click yes or no, then show the motivation
-    $(".buttony button").unbind('click');
-    $(".buttony button").click(
+    var button = $(".buttony button");
+    button.unbind('click');
+    button.click(
         function() {
             $(this).parents(".question").find(".qtext").slideUp();
 
@@ -49,26 +51,14 @@ function initiateBehavior() {
             $(this).parent().slideUp();
             $(this).parents(".question").find(".motivation").slideDown();
 
-//            updateQuestionGraph();
             scoreFromButton($(this).attr("value"));
         }
     );
 
     // If you click yes or no, then update the eco points
-//    $(".yesB").click(
-//        function() {
     function scoreFromButton(newPoints) {
             console.log("Clicked score button - update the eco points!");
-//            var newPoints = 1;
-//            var newPoints = $(this).attr("value");
             console.log('new points is: ' + newPoints);
-
-//            newPoints = parseInt(newPoints);
-//            console.log('new points, parsed, is: ' + newPoints);
-//            console.log(newPoints);
-
-            // TODO: do something different for yes and no
-
 
             var setCumulativePoints = function(newCumulativePoints) {
                 cumulativePoints = newCumulativePoints;
@@ -83,13 +73,11 @@ function initiateBehavior() {
                 url: "/score",
                 dataType: 'JSON',
                 success: function(data) {
-//                    cumulativePoints = data.msg;
                     console.log("incremented cumulativePoints to: " + data.msg);
                     setCumulativePoints(data.msg);
                 }
             });
-//        });
-    };
+    }
 
 
     $(".ad").hide();
@@ -227,6 +215,8 @@ function ecoBlock(argFrame) {
         motivation.appendTo(newBlock);
     }
 
+    newBlock.append($('p'));
+
     // add to ecoblocks
     $("#ecoblocks").append(newBlock);
 }
@@ -273,7 +263,7 @@ function numQuestions() {
 
 function completedQuestions() {
 
-    return jQuery("#ecoblocks div.motivation").filter(":visible").length;
+    return jQuery("#ecoblocks").find("div.motivation").filter(":visible").length;
 
 }
 
@@ -296,10 +286,11 @@ function splashScreen(duration) {
     duration = duration || 2000;
     $("#score").hide();
     $("#questions").hide();
-    $("#splash").show();
+    var splash = $("#splash");
+    splash.show();
     $("#gift").hide();
     $(".ad").hide();
-    $("#splash").fadeOut(duration, function() {
+    splash.fadeOut(duration, function() {
         $("#questions").fadeIn("slow");
     });
 }
@@ -424,10 +415,10 @@ $(document).ready(function() {
     // Retrieve more questions from the server.
     // Increment our index of questions.
     $.ajax({
-        type: 'GET',
+        type: "GET",
         data: {},
         url: "/score",
-        dataType: 'JSON'
+        dataType: "JSON"
     }).done(function(response) {
         cumulativePoints = response.msg;
         console.log("updated cumulativePoints to: " + cumulativePoints);
@@ -450,10 +441,10 @@ $(document).ready(function() {
     }, getMoreEcoBlocks);
 
     // custom footer controller
-    $('#footernav a').click(function(e) {
+    $("#footernav").find("a").click(function(e) {
         e.preventDefault();
 
-        $("#tabcontrolled .tab-pane").hide();
+        $("#tabcontrolled").find(".tab-pane").hide();
 
         $("" + $(this).attr("href")).show();
     });
