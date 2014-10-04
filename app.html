@@ -1,6 +1,3 @@
-<script src="http://code.jquery.com/jquery.min.js"></script>
-<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
-
 <head>
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -15,124 +12,213 @@
 
 </head>
 
+<!--<script src="http://code.jquery.com/jquery.min.js"></script>-->
+<!--<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />-->
+<!-- GLYPH ICONS START-->
+<!--<link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">-->
+<!--<link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">-->
+<!--<link rel="stylesheet" type="text/css" href="app.css">-->
+<!--<script src="app.js"></script>-->
+<!-- GLYPH ICONS END -->
+<!--<script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>-->
+<!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> -->
+
 <body style="">
+<div class="container">
+    <!-- Ecoheader -->
+    <!--<div class="row ecobackground">-->
+        <!--<div class="row ecoheader">-->
+            <!--&nbsp;&nbsp;&nbsp;&nbsp;-->
+        <!--</div>-->
+    <!--</div>-->
+    <h1>Ecometrix</h1>
 
-    <div class='tack'>
-        <!-- Ecoheader -->
-        <div class="row ecobackground">
-            <div class="row ecoheader">
-                &nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- Score -->
+    <!--<div class="row ecobackground scorebox">-->
+    <div class="row scorebox">
+        <div class="score">
+            <div id='ecoscore' class='friend' style="width: 1%;">EcoScore 0
             </div>
-        </div>
-
-        <!-- Score -->
-        <div class="row ecobackground scorebox">
-            <div class="score">
-                <div id='ecoscore' class='friend' style="width: 1%;">EcoScore 0
-                </div>
-                <!--<div id='qscore' class='foe' style="width: 1%;">Questions: 0-->
-                <!--</div>-->
-            </div>
+            <!--<div id='qscore' class='foe' style="width: 1%;">Questions: 0-->
+            <!--</div>-->
         </div>
     </div>
-    <!-- tack -->
 
-    <div class='tackFollow'>
-    </div>
+    <!--<p class="lead">-->
+    <!--<div class="row">-->
+        <!--<div class="center col-md-9">-->
+            <!--Score Here-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <!-- Nav Controlled-->
-    <div class="tab-content" id="tabcontrolled">
 
-        <!-- Splash Screen -->
-        <div class="tab-pane container-full" id="splash">
+    <!-- Ecoblock Container -->
+    <div id="ecoblocks">
 
-            <div id="splash" class="row">
-                <div class="col-md-9">
-                    <img src="img/ecometrixlogo.png">
-                </div>
-            </div>
+        <!-- Canonical Question -->
+        <!--<div class="question parent row qEssence">-->
 
-        </div>
+            <!-- question text -->
+            <!--<div class="qtext initQ" >Q: Some Question 1</div>-->
+
+            <!-- question info -->
+            <!--<div class="qinfo initQ" >more info</div>-->
+
+            <!-- button box -->
+            <!--<div class="buttons buttony" >-->
+                <!--<button  type="button" class="btn btn-success yesB the-icons clearfix"><i class="icon-ok"></i></button>-->
+                <!--<button  type="button" class="noB btn btn-success"><i class="icon-remove"></i></button>-->
+            <!--</div>-->
+
+            <!-- response/motivation section -->
+            <!--<div class="motivation">Over 2000 trees a year are saved when you decide not to cut them down-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!-- end question -->
+         <!--Canonical Twitter Feed-->
+        <!--<div class="ttrEssence ttrContent  parent row">-->
+
+            <!-- tweet contet -->
+            <!--<div class="ttext col-md-9" >Tweets loaded from service</div>-->
+
+        <!--</div>-->
+         <!--Canonical Question-->
+        <!--<div class="question parent row qEssence">-->
+
+            <!-- question text -->
+            <!--<div class="qtext initQ" >Q: Some Question 2</div>-->
+
+            <!-- question info -->
+            <!--<div class="qinfo initQ" >more info</div>-->
+
+            <!-- button box -->
+            <!--<div class="buttons buttony" >-->
+                <!--<button  type="button" class="btn btn-success yesB the-icons clearfix"><i class="icon-ok"></i></button>-->
+                <!--<button  type="button" class="noB btn btn-success"><i class="icon-remove"></i></button>-->
+            <!--</div>-->
+
+            <!-- response/motivation section -->
+            <!--<div class="motivation">Over 2000 trees a year are saved when you decide not to cut them down-->
+            <!--</div>-->
+
+        <!--</div>-->
+         <!--end question -->
 
         <!-- Ecoblock Container -->
-        <div class="tab-pane container-full" id="questions">
+        <!--<div id="ecoblocks">-->
 
-            <div id="ecoblocks">
-            </div>
-            <!-- end ecoblock container  -->
+            <!-- Canonical Question -->
+            <!--<div class="question parent row qEssence">-->
 
-            <div class="ad">
-                <div class="col-md-9">Ad</div>
-            </div>
+                <!-- question text -->
+                <!--<div class="qtext initQ" >Q: Some Question 3</div>-->
 
-            <div class="row">
-            </div>
+                <!-- question info -->
+                <!--<div class="qinfo initQ" >more info</div>-->
 
-        </div>
 
-        <!-- Score Container -->
-        <!-- Frame green points, questions answered, how green you are in comparison to everyone else, graph, share with facebook -->
-        <div class="tab-pane container-full" id="score">
+                <!-- button box -->
+                <!--<div class="buttons buttony" >-->
+                    <!--<button  type="button" class="btn btn-success yesB the-icons clearfix"><i class="icon-ok"></i></button>-->
+                    <!--<button  type="button" class="noB btn btn-danger"><i class="icon-remove"></i></button>-->
+                <!--</div>-->
 
-            <div id="points">
-            </div>
+                <!-- response/motivation section -->
+                <!--<div class="motivation">Over 2000 trees a year are saved when you decide not to cut them down-->
+                <!--</div>-->
 
-            <div id="progress">
-            </div>
+            <!--</div>-->
+    <!-- end question -->
 
-            <div id="overall">
-            </div>
+            <!-- Canonical Twitter Feed -->
+            <!--<div class="ttrEssence ttrContent  parent row">-->
 
-            <div id="overallgraph">
-            </div>
+                <!-- tweet contet -->
+                <!--<div class="ttext col-md-9" >Tweets loaded from service</div>-->
 
-            <div id="fbookshare">
-            </div>
+            <!--</div>-->
 
-            <div class="ad">
-                <div class="col-md-9">Ad</div>
-            </div>
+            <!-- Canonical Question -->
+            <!--<div class="question parent row qEssence">-->
 
-            <div class="row">
-            </div>
+                <!-- question text -->
+                <!--<div class="qtext initQ" >Q: Some Question 4</div>-->
 
-        </div>
+                <!-- question info -->
+                <!--<div class="qinfo initQ" >more info</div>-->
 
-        <!-- Gift Container -->
-        <div class="tab-pane container-full" id="gift">
+                <!-- button box -->
+                <!--<div class="buttons buttony" >-->
+                    <!--<button  type="button" class="btn btn-success yesB the-icons clearfix"><i class="icon-ok"></i></button>-->
+                    <!--<button  type="button" class="noB btn btn-danger"><i class="icon-remove"></i></button>-->
+                <!--</div>-->
 
-            <div class="ad">
-                <div class="col-md-9">Ad</div>
-            </div>
+                <!-- response/motivation section -->
+                <!--<div class="motivation">Over 2000 trees a year are saved when you decide not to cut them down-->
+                <!--</div>-->
 
-            <div class="row">
-            </div>
+            <!--</div> -->
+    <!-- end question -->
 
-        </div>
+
+        <!--</div> 	-->
+    <!-- hidden A, show B,  -->
+        <!--<div class="ad">-->
+            <!--<div class="col-md-9">Ad</div>-->
+        <!--</div>-->
+
+        <!--<div class="row">-->
+
+        <!--</div>-->
+        <!--</p>-->
 
     </div>
-    <!-- end tab container -->
+</div>
+<div id="footer">
+    <div class="container text-center">
+    </div>
+</div>
+<!--<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="footernav">-->
+    <!--<div class="container-full span12 text-center">-->
+        <!--<p>blah</p>-->
 
-    <!-- footer -->
-    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" id="footernav">
-        <div class="container-full">
+        <!--<ul class="nav nav-pills econav center-pills">-->
+            <!--&lt;!&ndash;<li class="active leftpill">&ndash;&gt;-->
+            <!--<li>-->
+                <!--&lt;!&ndash;<a href="#questions" data-toggle="tab">Questions</a>&ndash;&gt;-->
+                <!--<a href="#questions" >Questions</a>-->
+            <!--</li>-->
+            <!--&lt;!&ndash;<li class="midpill">&ndash;&gt;-->
+            <!--<li>-->
+                <!--&lt;!&ndash;<a href="#score" data-toggle="tab">Score</a>&ndash;&gt;-->
+                <!--<a href="#score" >Score</a>-->
+            <!--</li>-->
+            <!--&lt;!&ndash;<li class="rightpill">&ndash;&gt;-->
+            <!--<li>-->
+                <!--&lt;!&ndash;<a href="#gift" data-toggle="tab">Gift</a>&ndash;&gt;-->
+                <!--<a href="#gift" >Gift</a>-->
+            <!--</li>-->
+            <!--<li class="far-rightpill" id="nextquestions">-->
+                <!--<a href="#questions" data-toggle="tab">Next Questions</a>-->
+            <!--</li>-->
+        <!--</ul>-->
 
-            <ul class="nav nav-pills econav">
-                <li class="active leftpill">
-                    <a href="#questions" data-toggle="tab">Questions</a>
-                </li>
-                <li class="midpill">
-                    <a href="#score" data-toggle="tab">Score</a>
-                </li>
-                <li class="rightpill">
-                    <a href="#gift" data-toggle="tab">Gift</a>
-                </li>
-                <li class="far-rightpill" id="nextquestions">
-                    <a href="#questions" data-toggle="tab">Next Questions</a>
-                </li>
-            </ul>
-
-        </div>
-    </nav>
+    <!--</div>-->
+<nav class="navbar-default navbar-fixed-bottom" role="navigation" id="footernav">
+  <div class="span12 center-pills">
+    <ul class="nav nav-pills">
+        <li class="active leftpill">
+            <a href="#score">Score</a>
+        </li>
+        <!--<li class="active midpill">-->
+            <!--<a href="#gift">Gift</a>-->
+        <!--</li>-->
+        <li class="active far-rightpill" id="nextquestions">
+            <a href="#questions" data-toggle="tab">Next Questions</a>
+        </li>
+    </ul>
+  </div>
+</nav>
 </body>
 </html>

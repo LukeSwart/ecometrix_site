@@ -74,6 +74,7 @@ body {
 .row {
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: 2px;
 }
 /* End: remove responsive gutter */
 
@@ -91,7 +92,7 @@ body {
 /* Custom Score Chart */
 
 .score {
-    background-color: #333;
+    /*background-color: #333;*/
 }
 .score .label {
     float: right;
@@ -136,14 +137,30 @@ body {
     position: fixed;
 }
 /* Align buttons */
+.center-pills {
+    display: inline-block;
+    text-align: center;
+}
+
+.center-pills { text-align:center; }
+.center-pills ul.nav-pills { display:inline-block; }
+.center-pills li { display:inline; }
+.center-pills a { float:left; }
+/*IE6*/
+* html .center-pills ul.nav-pills { display:inline; }
+/*IE7*/
+*+html .center-pills ul.nav-pills { display:inline; }
 
 /* For small screens*/
-
 @media only screen and (min-device-width: 1px) and (max-device-width: 768px) {
     /* Styles for small screen*/
     .econav {
         padding-left: 21%;
     }
+    body{
+        zoom: 125%;
+    }
+
 }
 /* For large screens*/
 
@@ -151,6 +168,9 @@ body {
     /* Styles for larger screen */
     .econav {
         padding-left: 30px;
+    }
+    body{
+        zoom: 150%;
     }
 }
 .econav .leftpill {
