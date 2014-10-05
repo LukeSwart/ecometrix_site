@@ -4,9 +4,9 @@ function getUserLoginInfo() {
     var errorCount = 0;
     var formIsBlank = true;
     console.log("validating for empty fields: ");
-    $('#login input').each(function(index, val) {
+    $("#login").find("input").each(function(index, val) {
         formIsBlank = false;
-        if ($(this).val() === '') {
+        if ($(this).val() === "") {
             errorCount++;
         }
     });
@@ -16,15 +16,15 @@ function getUserLoginInfo() {
     if (errorCount === 0 && !formIsBlank) {
 
         // If it is, compile all user info into one object
+        var username = $("username");
         var newUserInfo = {
-            'username': $('#username').val().trim(),
-            'password': $.md5($('#password').val()),
-            'token': $.md5($.now(), $('#username').val())
+            "username": username.val().trim(),
+            "password": $.md5($("#password").val()),
+            "token": $.md5($.now(), username.val())
         };
-//        console.log("new login token: %s", newUserInfo.token);
     } else {
         // If errorCount is more than 0, error out
-        alert('Please fill in all fields');
+        alert("Please fill in all fields");
         return false;
     }
     return newUserInfo;
@@ -38,9 +38,9 @@ function getNewUserInfo() {
     // If we have any empty fields, notify the user
     // and reject the form submission.
     console.log("validating for empty fields: ");
-    $('#addUser input').filter('.required').each(function(index, val) {
+    $("#addUser").find("input").filter(".required").each(function(index, val) {
         formIsBlank = false;
-        if ($(this).val() === '') {
+        if ($(this).val() === "") {
             errorCount++;
         }
     });
@@ -50,20 +50,21 @@ function getNewUserInfo() {
     if (errorCount === 0 && !formIsBlank) {
 
         // If it is, compile all user info into one object
+        var username = $("username");
         var newUserInfo = {
-            'username': $('#username').val().trim(),
-            'password': $.md5($('#password').val()),
-            'email': $('#email').val().trim(),
-            'fullName': $('#fullName').val().trim(),
-            'age': $('#age').val().trim(),
-            'location': $('#location').val().trim(),
-            'cumulativePoints': 0,
-            'token': $.md5($.now(), $('#username').val())
+            "username": username.val().trim(),
+            "password": $.md5($("#password").val()),
+            "email": $("#email").val().trim(),
+            "fullName": $("#fullName").val().trim(),
+            "age": $("#age").val().trim(),
+            "location": $("#location").val().trim(),
+            "cumulativePoints": 0,
+            "token": $.md5($.now(), username.val())
         };
         console.log("new user addition token: %s", newUserInfo.token);
     } else {
         // If errorCount is more than 0, error out.
-        alert('Please fill in all fields');
+        alert("Please fill in all fields");
         return false;
     }
     return newUserInfo;
@@ -84,19 +85,19 @@ function requestUserInfoViaAJAX(event) {
         return false;
 
     $.ajax({
-        type: 'GET',
+        type: "GET",
         data: jQuery.param(userinfo),
-        url: '/login/verify',
-        dataType: 'JSON'
+        url: "/login/verify",
+        dataType: "JSON"
     }).done(function(response) {
-        if (response.msg == '') {
+        if (response.msg == "") {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             alert(message);
-            window.location.href = '/app.html';
+            window.location.href = "/app.html";
         } else {
             alert("error: " + response.msg);
         }
-        $('.field').val('');
+        $(".field").val("");
     });
 
     return true;
@@ -118,23 +119,23 @@ function insertUserInfoViaAJAX(event) {
 
     // Use AJAX to post the object to our adduser service
     $.ajax({
-        type: 'POST',
+        type: "POST",
         data: userinfo,
-        url: '/login/adduser',
-        dataType: 'JSON'
+        url: "/login/adduser",
+        dataType: "JSON"
     }).done(function(response) {
-        if (response.msg == '') {
+        if (response.msg == "") {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             message += "\nWe love having new users! Please have patience while we are in alpha mode :)";
             alert(message);
-            window.location.href = '/app.html';
+            window.location.href = "/app.html";
         } else {
             // If we get an error, send alert with the error message
             // from our service.
-            alert('Error: ' + response.msg);
+            alert("Error: " + response.msg);
         }
         // Clear the form inputs
-        $('.field').val('');
+        $(".field").val("");
     });
     return true;
 }
@@ -147,26 +148,26 @@ function resumeSession(event) {
 
     // Use AJAX to post the object to our adduser service
     $.ajax({
-        type: 'GET',
+        type: "GET",
         data: {}, // The AJAX request will not work without a "data" value.
-        url: '/login/resumeSession',
-        dataType: 'JSON'
+        url: "/login/resumeSession",
+        dataType: "JSON"
     }).done(function(response) {
-        if (response.msg == '') {
+        if (response.msg == "") {
             console.log("Session is active, redirecting to main app.");
-            window.location.href = '/app.html';
+            window.location.href = "/app.html";
         } else {
             alert("Have you logged in?\n" + response.msg);
-            window.location.href = '/app_login.html';
+            window.location.href = "/app_login.html";
         }
     });
 }
 
 $(document).ready(function() {
     /* attach a submit handler to the new user and previous user login forms */
-    $('#userinfo').submit(requestUserInfoViaAJAX);
-    $('#adduserinfo').submit(insertUserInfoViaAJAX);
+    $("#userinfo").submit(requestUserInfoViaAJAX);
+    $("#adduserinfo").submit(insertUserInfoViaAJAX);
     // Resume an existing session without logging in.
     // Uses the url: /login/resumeSession
-    $('#resume-session').click(resumeSession);
+    $("#resume-session").click(resumeSession);
 });
