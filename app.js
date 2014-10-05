@@ -428,12 +428,21 @@ $(document).ready(function() {
         index: index
     }, getMoreEcoBlocks);
 
-    // custom footer controller
-    $("#footernav").find("a").click(function(e) {
-        e.preventDefault();
+//    $("#share").click({
+//        index: index
+//    }, shareStats);
 
-        $("#tabcontrolled").find(".tab-pane").hide();
+    // TODO: customize the footer controller to enhance login and gift redemption
+//    $("#loginPage").click({
+//        index: index
+//    }, getMoreEcoBlocks);
 
-        $("" + $(this).attr("href")).show();
-    });
+//    // custom footer controller
+//    $("#footernav").find("a").click(function(e) {
+//        e.preventDefault();
+//
+//        $("#tabcontrolled").find(".tab-pane").hide();
+//
+//        $("" + $(this).attr("href")).show();
+//    });
 });

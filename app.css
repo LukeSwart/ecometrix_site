@@ -71,12 +71,40 @@ body {
     padding-left: 0;
     padding-right: 0;
 }
+
 .row {
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 2px;
 }
 /* End: remove responsive gutter */
+
+/* Begin login specific css */
+form-all{
+    background:#f0f0f0;
+    padding:6% 4%;
+}
+input[type="text"],input[type="password"]{
+    /*input-all{*/
+    /*width:92%;*/
+    height:100%;
+    /*background:#fff;*/
+    /*margin-bottom:4%;*/
+    border:1px solid #ccc;
+    /*padding:4%;*/
+    /*font-family:'Open Sans',sans-serif;*/
+    /*font-size:95%;*/
+    /*color:#555;*/
+}
+#login, #addUser{
+    width:400px;
+    margin:0 auto;
+    margin-top:8px;
+    margin-bottom:2%;
+    transition:opacity 1s;
+    /*-webkit-transition:opacity 1s;*/
+}
+/* End login specific css */
 
 /* Header */
 
@@ -106,13 +134,13 @@ body {
     color: white;
 }
 /*.score .foe {*/
-    /*font: 10px sans-serif;*/
-    /*background-color: #bd8a00;*/
-    /*background-color: #5AB516;*/
-    /*text-align: right;*/
-    /*padding: 3px;*/
-    /*margin: 1px;*/
-    /*color: white;*/
+/*font: 10px sans-serif;*/
+/*background-color: #bd8a00;*/
+/*background-color: #5AB516;*/
+/*text-align: right;*/
+/*padding: 3px;*/
+/*margin: 1px;*/
+/*color: white;*/
 /*}*/
 .scorebox {
     padding-top: 1px;
@@ -136,20 +164,22 @@ body {
 .navbar-fixed-bottom {
     position: fixed;
 }
-/* Align buttons */
+/*Align buttons */
 .center-pills {
     display: inline-block;
     text-align: center;
 }
 
-.center-pills { text-align:center; }
-.center-pills ul.nav-pills { display:inline-block; }
-.center-pills li { display:inline; }
-.center-pills a { float:left; }
-/*IE6*/
-* html .center-pills ul.nav-pills { display:inline; }
-/*IE7*/
-*+html .center-pills ul.nav-pills { display:inline; }
+.navbar .navbar-inner .nav {
+    float: none;
+    display:inline-block;
+}
+.nav ul li a:hover, .nav ul li a:active {
+    /*// Background color of hovered link*/
+    background-color:#333333;
+
+    color:#6699CC;
+}
 
 /* For small screens*/
 @media only screen and (min-device-width: 1px) and (max-device-width: 768px) {
