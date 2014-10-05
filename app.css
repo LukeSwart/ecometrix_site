@@ -60,16 +60,11 @@
     padding-right: 15em;
 }
 /* Begin: remove responsive gutter */
-
-.container-full {
+.container {
     margin: 0 auto;
-    width: 100%;
     padding-left: 0;
     padding-right: 0;
-}
-body {
-    padding-left: 0;
-    padding-right: 0;
+    padding-bottom: 4em;
 }
 
 .row {
@@ -234,9 +229,6 @@ html, body {
 }
 /* enable this when footer is enabled */
 
-body {
-    padding-bottom: 70px;
-}
 /*
 Gradient Spec:
 - Brown (153, 103, 50) on left. - Green (123, 189, 50) 
