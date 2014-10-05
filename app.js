@@ -19,10 +19,10 @@ function initiateBehavior() {
             ", isInit: " + hasInitQ);
 
         /*
-    Toggle line height
-    Note:
-    could have just set the base class then toggleClass
-    */
+         Toggle line height
+         Note:
+         could have just set the base class then toggleClass
+         */
         if (hasOpenQ) {
 
             //reduce
@@ -57,26 +57,26 @@ function initiateBehavior() {
 
     // If you click yes or no, then update the eco points
     function scoreFromButton(newPoints) {
-            console.log("Clicked score button - update the eco points!");
-            console.log('new points is: ' + newPoints);
+        console.log("Clicked score button - update the eco points!");
+        console.log('new points is: ' + newPoints);
 
-            var setCumulativePoints = function(newCumulativePoints) {
-                cumulativePoints = newCumulativePoints;
-                updateEcoscoreGraph(cumulativePoints);
-            };
-            // Retrieve more questions from the server.
-            // Increment our index of questions.
-            var cumulativePoints = 0;
-            $.ajax({
-                type: 'PUT',
-                data: {'newPoints': newPoints},
-                url: "/score",
-                dataType: 'JSON',
-                success: function(data) {
-                    console.log("incremented cumulativePoints to: " + data.msg);
-                    setCumulativePoints(data.msg);
-                }
-            });
+        var setCumulativePoints = function(newCumulativePoints) {
+            cumulativePoints = newCumulativePoints;
+            updateEcoscoreGraph(cumulativePoints);
+        };
+        // Retrieve more questions from the server.
+        // Increment our index of questions.
+        var cumulativePoints = 0;
+        $.ajax({
+            type: 'PUT',
+            data: {'newPoints': newPoints},
+            url: "/score",
+            dataType: 'JSON',
+            success: function(data) {
+                console.log("incremented cumulativePoints to: " + data.msg);
+                setCumulativePoints(data.msg);
+            }
+        });
     }
 
 
@@ -200,13 +200,13 @@ function ecoBlock(argFrame) {
 
     // motivation list...
     /*     if (typeof argFrame.motivations != "undefined") {
-           var motivation =
-           $('<div>').text(argFrame.motivation);
-           for (var i = 0; i < argFrame.motivations.length; i++) {
-           motivation.addClass('motivation');
-           motivation.appendTo(newBlock);
-           }
-    */
+     var motivation =
+     $('<div>').text(argFrame.motivation);
+     for (var i = 0; i < argFrame.motivations.length; i++) {
+     motivation.addClass('motivation');
+     motivation.appendTo(newBlock);
+     }
+     */
 
     if (typeof argFrame.motivation != "undefined") {
         var motivation =
@@ -330,17 +330,36 @@ function checkForValidSession() {
             alert("Welcome to Ecometrix " + response.username + "!\nClick around to get started, or resume your old session.");
             // Continue to the main app page.
         } else {
-            alert("Please create an account to get started!");
+            alert("Try our evaluation anonymously OR login below to create an account!");
             // alert(response.msg);
-            window.location.href = '/app_login.html';
+//            window.location.href = '/app_login.html';
         }
     });
 }
 
+//function redeemGift(event) {
+//    $.ajax({
+//        type: 'GET',
+//        data: {}, // The AJAX request will not work without a "data" value.
+//        url: '/login/resumeSession',
+//        dataType: 'JSON'
+//    }).done(function(response) {
+//        if (response.msg == '') {
+//            console.log("Session is active, redirecting to main app.");
+//            alert("You have " + ecoscore + " points! Earn a few more to get your reward!");
+//            // Continue to the main app page.
+//        } else {
+//            alert("Please create an account to redeem your gift!");
+//            // alert(response.msg);
+////            window.location.href = '/app_login.html';
+//        }
+//    });
+//}
 
 $(document).ready(function() {
 
     checkForValidSession();
+
     /*
      * Static content
      */
@@ -418,9 +437,7 @@ $(document).ready(function() {
 
     ecoRender();
     initiateBehavior();
-//    updateQuestionGraph();
     updateEcoscoreGraph(cumulativePoints);
-    // getMoreEcoBlocks(1);
     splashScreen();
     var index = 1;
 
