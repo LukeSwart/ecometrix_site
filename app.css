@@ -56,8 +56,8 @@
 .ecoblocks {
     background: #777;
     width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 15em;
+    padding-right: 15em;
 }
 /* Begin: remove responsive gutter */
 
@@ -75,7 +75,7 @@ body {
 .row {
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 2px;
+    margin-bottom: .2em;
 }
 /* End: remove responsive gutter */
 
@@ -110,7 +110,7 @@ input[type="text"],input[type="password"]{
 
 .ecoheader {
     background-image: url('img/ecometrixheader.jpg');
-    background-repeat: none;
+    /*background-repeat: none;*/
     line-height: 51px;
     width: 320px;
 }
@@ -181,6 +181,21 @@ input[type="text"],input[type="password"]{
     color:#6699CC;
 }
 
+/* Cross-browser compatibility */
+html, body {
+  height: 100%;
+}
+
+/*@-ms-viewport{*/
+    /*width: device-width;*/
+    /*position: device-fixed;*/
+/*}*/
+@-webkit-viewport   { width: 620; }
+@-moz-viewport      { width: 620; }
+@-ms-viewport       { width: 620; }
+@-o-viewport        { width: 620; }
+@viewport           { width: 620; }
+
 /* For small screens*/
 @media only screen and (min-device-width: 1px) and (max-device-width: 768px) {
     /* Styles for small screen*/
@@ -188,19 +203,21 @@ input[type="text"],input[type="password"]{
         padding-left: 21%;
     }
     body{
-        zoom: 125%;
+        /*zoom: 125%;*/
+        zoom: 90%;
     }
 
 }
 /* For large screens*/
-
+/* Affects Chromium browser (not Firefox) */
 @media only screen and (min-device-width: 768px) {
     /* Styles for larger screen */
     .econav {
         padding-left: 30px;
     }
     body{
-        zoom: 150%;
+        /*zoom: 150%;*/
+        zoom: 125%;
     }
 }
 .econav .leftpill {
