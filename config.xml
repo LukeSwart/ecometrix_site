@@ -4,7 +4,7 @@
     <description>
         Hello World sample application that responds to the deviceready event.
     </description>
-    <author email="ecometrixco@gmail.com" href="ecometrix.co">
+    <author email="ecometrixco@gmail.com" href="yourecometrix.co">
       Ecometrix Team
     </author>
     <preference name="permissions" value="none" />
