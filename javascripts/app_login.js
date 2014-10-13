@@ -93,7 +93,7 @@ function requestUserInfoViaAJAX(event) {
         if (response.msg == "") {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             alert(message);
-            window.location.href = "/app.html";
+            window.location.href = "/index.html";
         } else {
             alert("error: " + response.msg);
         }
@@ -128,7 +128,7 @@ function insertUserInfoViaAJAX(event) {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             message += "\nWe love having new users! Please have patience while we are in alpha mode :)";
             alert(message);
-            window.location.href = "/app.html";
+            window.location.href = "/index.html";
         } else {
             // If we get an error, send alert with the error message
             // from our service.
@@ -155,7 +155,7 @@ function resumeSession(event) {
     }).done(function(response) {
         if (response.msg == "") {
             console.log("Session is active, redirecting to main app.");
-            window.location.href = "/app.html";
+            window.location.href = "/index.html";
         } else {
             alert("Have you logged in?\n" + response.msg);
             window.location.href = "/app_login.html";
