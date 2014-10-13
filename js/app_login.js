@@ -16,7 +16,7 @@ function getUserLoginInfo() {
     if (errorCount === 0 && !formIsBlank) {
 
         // If it is, compile all user info into one object
-        var username = $("username");
+        var username = $("#username");
         var newUserInfo = {
             "username": username.val().trim(),
             "password": $.md5($("#password").val()),
@@ -50,7 +50,7 @@ function getNewUserInfo() {
     if (errorCount === 0 && !formIsBlank) {
 
         // If it is, compile all user info into one object
-        var username = $("username");
+        var username = $("#username");
         var newUserInfo = {
             "username": username.val().trim(),
             "password": $.md5($("#password").val()),
