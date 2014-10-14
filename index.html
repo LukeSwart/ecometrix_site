@@ -1,35 +1,25 @@
 <!DOCTYPE html>
 <html>
-<!--<head>-->
-<!--<script src="http://code.jquery.com/jquery.min.js"></script>-->
-<!--<script src="../js/jquery-md5.js"></script>-->
-<!--<script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>-->
-<!--<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>-->
-<!--<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />-->
-<!--&lt;!&ndash; GLYPH ICONS START&ndash;&gt;-->
-<!--<link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">-->
-<!--<link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">-->
-<!--&lt;!&ndash; GLYPH ICONS END &ndash;&gt;-->
-<!--<link rel="stylesheet" type="text/css" href="app.css">-->
-<!--<script src="app.js"></script>-->
-<!--</head>-->
 <head>
     <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="js/jquery-2.1.1.min.js"></script>
     <script>!window.jQuery && document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
-
     <script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <script src="js/bootstrap/js/bootstrap.min.js"></script>
-    <link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="js/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+    <!--<link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />-->
+        <!-- NOTE: Bootstrap 3.0 doesn't play nice with our navbar, so we are using 2.3.2 -->
+     <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
+     <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">
+    <!--TODO: load local bootstrap libs as a fallback -->
+    <!--<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+    <!--<link href="js/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />-->
 
-    <!-- GLYPH ICONS START-->
-    <!--<link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">-->
-    <!--<link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">-->
-    <!-- GLYPH ICONS END -->
+    <!--NOTE: this check will break if the plug-in is renamed. Be sure to update the check along with the package!-->
+    <!--<script>    $.fn.modal || document.write('<script src="js/bootstrap/js/bootstrap.min.js"><\/script>')</script>-->
+    <!--<script>    $.fn.modal || document.write('<script src="js/bootstrap/css/bootstrap.min.css"><\/script>' +-->
+            <!--'<script src="js/bootstrap/css/bootstrap-responsive.min.css")><\/script>')</script>-->
+    <!--<script src="js/bootstrap/js/bootstrap.min.js"></script>-->
 
+    <script src="js/jquery-md5.js"></script>
     <script src="js/app.js"></script>
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <script src="js/app_login.js"></script>
