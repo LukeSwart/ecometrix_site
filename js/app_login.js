@@ -87,7 +87,7 @@ function requestUserInfoViaAJAX(event) {
     $.ajax({
         type: "GET",
         data: jQuery.param(userinfo),
-        url: "/login/verify",
+        url: "http://yourecometrix.co/login/verify",
         dataType: "JSON"
     }).done(function(response) {
         if (response.msg == "") {
@@ -121,7 +121,7 @@ function insertUserInfoViaAJAX(event) {
     $.ajax({
         type: "POST",
         data: userinfo,
-        url: "/login/adduser",
+        url: "http://yourecometrix.co/login/adduser",
         dataType: "JSON"
     }).done(function(response) {
         if (response.msg == "") {
@@ -150,7 +150,7 @@ function resumeSession(event) {
     $.ajax({
         type: "GET",
         data: {}, // The AJAX request will not work without a "data" value.
-        url: "/login/resumeSession",
+        url: "http://yourecometrix.co/login/resumeSession",
         dataType: "JSON"
     }).done(function(response) {
         if (response.msg == "") {

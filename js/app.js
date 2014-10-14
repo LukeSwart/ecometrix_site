@@ -70,7 +70,7 @@ function initiateBehavior() {
         $.ajax({
             type: 'PUT',
             data: {'newPoints': newPoints},
-            url: "/score",
+            url: "http://yourecometrix.co/score",
             dataType: 'JSON',
             success: function(data) {
                 console.log("incremented cumulativePoints to: " + data.msg);
@@ -304,7 +304,7 @@ function getMoreEcoBlocks(event) {
     // Retrieve more questions from the server. 
     // Increment our index of questions.
     $.ajax({
-        url: "/posts/" + event.data.index,
+        url: "http://yourecometrix.co/posts/" + event.data.index,
         cache: false
     })
         .done(function(json) {
@@ -322,7 +322,7 @@ function checkForValidSession() {
     $.ajax({
         type: 'GET',
         data: {}, // The AJAX request will not work without a "data" value.
-        url: '/login/resumeSession',
+        url: 'http://yourecometrix.co/login/resumeSession',
         dataType: 'JSON'
     }).done(function(response) {
         if (response.msg == '') {
@@ -357,6 +357,8 @@ function checkForValidSession() {
 //}
 
 $(document).ready(function() {
+
+    $.support.cors=true;
 
     checkForValidSession();
 
@@ -424,7 +426,7 @@ $(document).ready(function() {
     $.ajax({
         type: "GET",
         data: {},
-        url: "/score",
+        url: "http://yourecometrix.co/score",
         dataType: "JSON"
     }).done(function(response) {
         cumulativePoints = response.msg;
