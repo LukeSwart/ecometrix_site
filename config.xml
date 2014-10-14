@@ -2,13 +2,13 @@
 <widget id="co.yourecometrix" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Ecometrix</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Measure your sustainability to raise awareness and promote a healthier lifestyle.
     </description>
     <author email="ecometrixco@gmail.com" href="yourecometrix.co">
       Ecometrix Team
     </author>
     <preference name="permissions" value="none" />
-    <preference name="phonegap-version" value="3.4.0" />
+    <preference name="phonegap-version" value="3.5.0" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" />
@@ -42,14 +42,18 @@
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:platform name="android" />
-    <icon src="ecometrixlogo.png" />
-    <icon gap:platform="android" gap:qualifier="ldpi" src="res/icon/android/icon-36-ldpi.png" />
-    <icon gap:platform="android" gap:qualifier="mdpi" src="res/icon/android/icon-48-mdpi.png" />
-    <icon gap:platform="android" gap:qualifier="hdpi" src="res/icon/android/icon-72-hdpi.png" />
-    <icon gap:platform="android" gap:qualifier="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+    <icon src="icon.png" />
+    <!--<icon gap:platform="android" gap:qualifier="ldpi" src="icon.png" />-->
+    <!--<icon gap:platform="android" gap:qualifier="mdpi" src="icon.png" />-->
+    <!--<icon gap:platform="android" gap:qualifier="hdpi" src="icon.png" />-->
+    <!--<icon gap:platform="android" gap:qualifier="xhdpi" src="icon.png" />-->
+    <!--<icon gap:platform="android" gap:qualifier="ldpi" src="res/icon/android/icon-36-ldpi.png" />-->
+    <!--<icon gap:platform="android" gap:qualifier="mdpi" src="res/icon/android/icon-48-mdpi.png" />-->
+    <!--<icon gap:platform="android" gap:qualifier="hdpi" src="res/icon/android/icon-72-hdpi.png" />-->
+    <!--<icon gap:platform="android" gap:qualifier="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />-->
+    <!--<gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />-->
+    <!--<gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />-->
+    <!--<gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />-->
+    <!--<gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />-->
     <access origin="*" />
 </widget>
