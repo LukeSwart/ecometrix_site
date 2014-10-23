@@ -70,7 +70,7 @@ function initiateBehavior() {
         $.ajax({
             type: 'PUT',
             data: {'newPoints': newPoints},
-            url: "http://yourecometrix.co/score",
+            url: window.origin + "score",
             dataType: 'JSON',
             success: function(data) {
                 console.log("incremented cumulativePoints to: " + data.msg);
@@ -304,7 +304,7 @@ function getMoreEcoBlocks(event) {
     // Retrieve more questions from the server. 
     // Increment our index of questions.
     $.ajax({
-        url: "http://yourecometrix.co/posts/" + event.data.index,
+        url: window.origin + "posts/" + event.data.index,
         cache: false
     })
         .done(function(json) {
@@ -322,7 +322,7 @@ function checkForValidSession() {
     $.ajax({
         type: 'GET',
         data: {}, // The AJAX request will not work without a "data" value.
-        url: 'http://yourecometrix.co/login/resumeSession',
+        url: window.origin + "login/resumeSession",
         dataType: 'JSON'
     }).done(function(response) {
         if (response.msg == '') {
@@ -332,7 +332,6 @@ function checkForValidSession() {
         } else {
             alert("Try our evaluation anonymously OR login below to create an account!");
             // alert(response.msg);
-//            window.location.href = '/app_login.html';
         }
     });
 }
@@ -359,6 +358,11 @@ function checkForValidSession() {
 $(document).ready(function() {
 
     $.support.cors=true;
+    // ie: http://yourecometrix.co/
+    // ie: http://localhost:3002/
+//    window.origin = window.location.protocol + "//" + window.location.hostname +
+//        (window.location.port ? ":" + window.location.port: "") + "/";
+    window.origin = "http://yourecometrix.co/";
 
     checkForValidSession();
 
@@ -426,7 +430,7 @@ $(document).ready(function() {
     $.ajax({
         type: "GET",
         data: {},
-        url: "http://yourecometrix.co/score",
+        url: window.origin + "score",
         dataType: "JSON"
     }).done(function(response) {
         cumulativePoints = response.msg;

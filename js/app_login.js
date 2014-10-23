@@ -3,14 +3,13 @@
 function getUserLoginInfo() {
     var errorCount = 0;
     var formIsBlank = true;
-    console.log("validating for empty fields: ");
     $("#login").find("input").each(function(index, val) {
         formIsBlank = false;
         if ($(this).val() === "") {
             errorCount++;
         }
     });
-    console.log("errorCount: " + errorCount);
+    console.log("User login errorCount: " + errorCount);
 
     // Check and make sure errorCount's still at zero
     if (errorCount === 0 && !formIsBlank) {
@@ -37,14 +36,13 @@ function getNewUserInfo() {
     var formIsBlank = true;
     // If we have any empty fields, notify the user
     // and reject the form submission.
-    console.log("validating for empty fields: ");
     $("#addUser").find("input").filter(".required").each(function(index, val) {
         formIsBlank = false;
         if ($(this).val() === "") {
             errorCount++;
         }
     });
-    console.log("errorCount: " + errorCount);
+    console.log("New user login errorCount: " + errorCount);
 
     // Check and make sure errorCount is at zero.
     if (errorCount === 0 && !formIsBlank) {
@@ -78,22 +76,19 @@ function requestUserInfoViaAJAX(event) {
 
 // Get user info from the form.
     var userinfo = getUserLoginInfo();
-//    console.log("retrieved userinfo: ");
-//    console.log("new login token: %s", userinfo.token);
-//    console.log(userinfo);
     if (!userinfo)
         return false;
 
     $.ajax({
         type: "GET",
         data: jQuery.param(userinfo),
-        url: "http://yourecometrix.co/login/verify",
+        url: window.origin + "login/verify",
         dataType: "JSON"
     }).done(function(response) {
         if (response.msg == "") {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             alert(message);
-            window.location.href = "http://yourecometrix.co/index.html";
+            window.location.href = window.origin + "index.html";
         } else {
             alert("error: " + response.msg);
         }
@@ -111,24 +106,23 @@ function insertUserInfoViaAJAX(event) {
 
     // Get user info from the form.
     var userinfo = getNewUserInfo();
-    console.log("retrieved userinfo: ");
-    console.log(userinfo);
-    console.log("new user addition token: %s", userinfo.token);
     if (!userinfo)
         return false;
+
+    console.log("origin : " + window.origin);
 
     // Use AJAX to post the object to our adduser service
     $.ajax({
         type: "POST",
         data: userinfo,
-        url: "http://yourecometrix.co/login/adduser",
+        url: window.origin + "login/adduser",
         dataType: "JSON"
     }).done(function(response) {
         if (response.msg == "") {
             var message = "Welcome to Ecometrix, " + userinfo.username + "!";
             message += "\nWe love having new users! Please have patience while we are in alpha mode :)";
             alert(message);
-            window.location.href = "http://yourecometrix.co/index.html";
+            window.location.href = window.origin + "index.html";
         } else {
             // If we get an error, send alert with the error message
             // from our service.
@@ -150,20 +144,27 @@ function resumeSession(event) {
     $.ajax({
         type: "GET",
         data: {}, // The AJAX request will not work without a "data" value.
-        url: "http://yourecometrix.co/login/resumeSession",
+        url: window.origin + "/login/resumeSession",
         dataType: "JSON"
     }).done(function(response) {
         if (response.msg == "") {
-            console.log("Session is active, redirecting to main app.");
-            window.location.href = "http://yourecometrix.co/index.html";
+            window.location.href = window.origin + "index.html";
         } else {
             alert("Have you logged in?\n" + response.msg);
-            window.location.href = "http://yourecometrix.co/app_login.html";
+            window.location.href = window.origin + "app_login.html";
         }
     });
 }
 
 $(document).ready(function() {
+
+    $.support.cors=true;
+    // ie: http://yourecometrix.co/
+    // ie: http://localhost:3002/
+//    window.origin = window.location.protocol + "//" + window.location.hostname +
+//        (window.location.port ? ":" + window.location.port: "") + "/";
+    window.origin = "http://yourecometrix.co/";
+
     /* attach a submit handler to the new user and previous user login forms */
     $("#userinfo").submit(requestUserInfoViaAJAX);
     $("#adduserinfo").submit(insertUserInfoViaAJAX);
